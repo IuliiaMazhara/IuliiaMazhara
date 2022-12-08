@@ -8,18 +8,17 @@ abstract class TestingArithmeticOperations {
 
     protected Calculator calculator;
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"subAdd", "divMultiplication"})
     public void initializeCalculator() {
 
         calculator = new Calculator();
 
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"subAdd", "divMultiplication"})
     public void clearCalculator() {
 
         calculator = null;
-
     }
 
 }

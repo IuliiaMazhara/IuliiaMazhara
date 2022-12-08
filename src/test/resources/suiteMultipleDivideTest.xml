@@ -7,5 +7,11 @@
                 <include name="divMultiplication"></include>
             </run>
         </groups>
+        <classes>
+            <class name="com.epam.tc.hw1.CalculatorTestDivision"></class>
+            <class name="com.epam.tc.hw1.CalculatorTestMultiple"></class>
+            <class name="com.epam.tc.hw1.TestingArithmeticOperations"></class>
+
+        </classes>
     </test>
 </suite>

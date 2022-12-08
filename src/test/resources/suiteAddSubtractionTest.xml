@@ -7,5 +7,10 @@
                 <include name="subAdd"></include>
             </run>
         </groups>
+        <classes>
+            <class name="com.epam.tc.hw1.CalculatorTestAddition"></class>
+            <class name="com.epam.tc.hw1.CalculatorTestSubtraction"></class>
+            <class name="com.epam.tc.hw1.TestingArithmeticOperations"></class>
+        </classes>
     </test>
 </suite>
