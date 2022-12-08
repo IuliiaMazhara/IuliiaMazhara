@@ -1,9 +1,11 @@
 package com.epam.tc.hw1;
 
 
-import org.testng.annotations.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 
 public class CalculatorTestMultiple extends TestingArithmeticOperations {
 

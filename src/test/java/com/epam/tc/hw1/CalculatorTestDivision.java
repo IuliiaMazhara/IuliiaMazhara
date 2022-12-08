@@ -1,11 +1,11 @@
 package com.epam.tc.hw1;
 
-
-import org.testng.annotations.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 
 public class CalculatorTestDivision extends TestingArithmeticOperations {
 
@@ -27,7 +27,7 @@ public class CalculatorTestDivision extends TestingArithmeticOperations {
     @Test(groups = {"divMultiplication"})
     public void divBy0Test() {
 
-        assertThatThrownBy(() -> calculator.div(1,0)).isInstanceOf(NumberFormatException.class);
+        assertThatThrownBy(() -> calculator.div(1L, 0L)).isInstanceOf(NumberFormatException.class);
 
     }
 
