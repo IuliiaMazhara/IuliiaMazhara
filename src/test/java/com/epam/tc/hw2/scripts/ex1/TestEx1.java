@@ -21,7 +21,7 @@ public class TestEx1 extends InitializeKillWebSite {
 
     }
 
-    //Assert the login
+    //Assert the login of the user
     @Test
     public void assertLogin() {
 
@@ -36,7 +36,7 @@ public class TestEx1 extends InitializeKillWebSite {
 
     }
 
-    //Assert the header
+    //Assert the header menu
     @Test
     public void assertHeader() {
 
@@ -55,7 +55,7 @@ public class TestEx1 extends InitializeKillWebSite {
     }
 
 
-    //Assert the images
+    //Assert the images are on the page
     @Test
     public void assertImages() {
 
@@ -72,51 +72,35 @@ public class TestEx1 extends InitializeKillWebSite {
 
     }
 
-    //Assert the text is under image
-    @Test
-    public void assertTextIsUnderImage() {
-
-
-        String practicesPath = ".//span[contains(text(),'practices')]/../*/*[@class ='icons-benefit icon-practise']";
-        By practiseText = new By.ByXPath(practicesPath);
-        String customPath = ".//span[contains(text(),'flexible')]/../*/*[@class ='icons-benefit icon-custom']";
-        By customText = new By.ByXPath(customPath);
-        String multiPath = ".//span[contains(text(),'multiplatform')]/../*/*[@class ='icons-benefit icon-multi']";
-        By multiText = new By.ByXPath(multiPath);
-        String basePath = ".//span[contains(text(),'good base')]/../*/*[@class ='icons-benefit icon-base']";
-        By baseText = new By.ByXPath(basePath);
-        SoftAssertions softImagesText = new SoftAssertions();
-        softImagesText.assertThat(driver.findElements(practiseText).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(customText).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(multiText).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(baseText).size() != 0).isTrue();
-        softImagesText.assertAll();
-
-    }
-
-    //Assert the text under image is correct
+    //Assert the text is under image and the text is correct
     @Test
     public void assertTextUnderImage() {
 
 
-        By practiseText1 = new By.ByXPath(".//span[contains(text(),'To include good practices')]");
-        By practiseText2 = new By.ByXPath(".//span[contains(text(),'and ideas from successful')]");
-        By practiseText3 = new By.ByXPath(".//span[contains(text(),'EPAM project')]");
-        By customText = new By.ByXPath(".//span[contains(text(),'To be flexible and')]");
-        By multiText = new By.ByXPath(".//span[contains(text(),'To be multiplatform')]");
-        By baseText = new By.ByXPath(".//span[contains(text(),'Already have good base')]");
+        String practicesPath = ".//*[@class='icons-benefit icon-practise']/..//../span[@class = 'benefit-txt']";
+        By practiseText = new By.ByXPath(practicesPath);
+        String customPath = ".//*[@class='icons-benefit icon-custom']/..//../span[@class = 'benefit-txt']";
+        By customText = new By.ByXPath(customPath);
+        String multiPath = ".//*[@class='icons-benefit icon-multi']/..//../span[@class = 'benefit-txt']";
+        By multiText = new By.ByXPath(multiPath);
+        String basePath = ".//*[@class='icons-benefit icon-base']/..//../span[@class = 'benefit-txt']";
+        By baseText = new By.ByXPath(basePath);
         SoftAssertions softImagesText = new SoftAssertions();
-        softImagesText.assertThat(driver.findElements(practiseText1).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(practiseText2).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(practiseText3).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(customText).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(multiText).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(baseText).size() != 0).isTrue();
+        softImagesText.assertThat(driver.findElement(practiseText).getText()).isEqualTo("To include good practices\n"
+                + "and ideas from successful\n"
+                + "EPAM project");
+        softImagesText.assertThat(driver.findElement(customText).getText()).isEqualTo("To be flexible and\n"
+                + "customizable");
+        softImagesText.assertThat(driver.findElement(multiText).getText()).isEqualTo("To be multiplatform");
+        softImagesText.assertThat(driver.findElement(baseText).getText()).isEqualTo("Already have good base\n"
+                + "(about 20 internal and\n"
+                + "some external projects),\n"
+                + "wish to get more…");
         softImagesText.assertAll();
 
     }
 
-    //Assert the frame and frame button
+    //Assert the frame exist and frame button is within the frame
     @Test
     public void assertIframe() {
 
