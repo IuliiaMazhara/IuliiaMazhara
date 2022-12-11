@@ -10,13 +10,6 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <testng>7.6.1</testng>
-        <selenium-java>4.6.0</selenium-java>
-        <webdrivermanager>5.3.1</webdrivermanager>
-        <cucumber-java>7.8.1</cucumber-java>
-        <cucumber-java8>1.2.5</cucumber-java8>
-        <cucumber-core>7.8.1</cucumber-core>
-        <selenium-chrome-driver>4.6.0</selenium-chrome-driver>
-        <webdrivermanager>5.3.1</webdrivermanager>
         <calc>1.0</calc>
         <assertj-core>3.23.1</assertj-core>
         <maven-compiler-plugin>3.10.1</maven-compiler-plugin>
@@ -28,40 +21,6 @@
             <artifactId>testng</artifactId>
             <version>${testng}</version>
             <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium-java}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>${cucumber-java}</version>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java8</artifactId>
-            <version>${cucumber-java8}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-core</artifactId>
-            <version>${cucumber-core}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>${selenium-chrome-driver}</version>
         </dependency>
         <dependency>
             <groupId>com.calc</groupId>

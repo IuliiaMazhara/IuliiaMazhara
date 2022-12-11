@@ -10,14 +10,11 @@ abstract class TestingArithmeticOperations {
 
     @BeforeMethod(groups = {"subAdd", "divMultiplication"})
     public void initializeCalculator() {
-
         calculator = new Calculator();
-
     }
 
     @AfterMethod(groups = {"subAdd", "divMultiplication"})
     public void clearCalculator() {
-
         calculator = null;
     }
 
