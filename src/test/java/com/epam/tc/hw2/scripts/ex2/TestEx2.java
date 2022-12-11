@@ -1,26 +1,12 @@
 package com.epam.tc.hw2.scripts.ex2;
 
 import com.epam.tc.hw2.InitializeKillWebSite;
-import java.util.ArrayList;
-import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 
 public class TestEx2 extends InitializeKillWebSite {
-
-    //Assert the title of the page
-    @Test
-    public void assertTitle() {
-
-        SoftAssertions softTitle = new SoftAssertions();
-        softTitle.assertThat(driver.getTitle()).isEqualTo("Home Page");
-        softTitle.assertAll();
-
-
-    }
 
     //Assert the login
     @Test
@@ -37,100 +23,33 @@ public class TestEx2 extends InitializeKillWebSite {
 
     }
 
-    //Assert the header
-    @Test
-    public void assertHeader() {
 
-        SoftAssertions softHeader = new SoftAssertions();
-        By homeElement = By.partialLinkText("HOME");
-        By contactFormElement = By.partialLinkText("CONTACT FORM");
+    //Navigate to the Different ElementsPage
+    @Test
+    public void navigateToDifferentElementsPage() {
+
         By serviceFormElement = By.partialLinkText("SERVICE");
-        By metalsColorsElement = By.partialLinkText("METALS & COLORS");
-        softHeader.assertThat(driver.findElement(homeElement).getText()).isEqualTo("HOME");
-        softHeader.assertThat(driver.findElement(contactFormElement).getText()).isEqualTo("CONTACT FORM");
-        softHeader.assertThat(driver.findElement(serviceFormElement).getText()).isEqualTo("SERVICE");
-        softHeader.assertThat(driver.findElement(metalsColorsElement).getText()).isEqualTo("METALS & COLORS");
-        softHeader.assertAll();
-
+        driver.findElement(serviceFormElement).click();
+        By menuItemDifferentElements = By.partialLinkText("DIFFERENT ELEMENTS");
+        driver.findElement(menuItemDifferentElements).click();
+        SoftAssertions softDifferentElements = new SoftAssertions();
+        softDifferentElements.assertThat(driver.getTitle()).isEqualTo("Different Elements");
+        softDifferentElements.assertAll();
 
     }
 
-
-    //Assert the images
     @Test
-    public void assertImages() {
+    public void assertCheckBox() {
 
-        By iconPractise = By.cssSelector("[class='icons-benefit icon-practise']");
-        By iconCustom = By.cssSelector("[class='icons-benefit icon-custom']");
-        By iconBenefit = By.className("benefit-icon");
-        By iconBase = By.cssSelector("[class='icons-benefit icon-base']");
-        SoftAssertions softImages = new SoftAssertions();
-        softImages.assertThat(driver.findElements(iconPractise).size() != 0).isTrue();
-        softImages.assertThat(driver.findElements(iconCustom).size() != 0).isTrue();
-        softImages.assertThat(driver.findElements(iconBenefit).size() != 0).isTrue();
-        softImages.assertThat(driver.findElements(iconBase).size() != 0).isTrue();
-        softImages.assertAll();
+        By waterCheckBox = By.partialLinkText("Water");
+        By windCheckBox = By.partialLinkText("Wind");
+        driver.findElement(waterCheckBox).click();
+        driver.findElement(windCheckBox).click();
+        By waterCheckBoxChecked = By.partialLinkText("Water");
+        SoftAssertions softCheckBox = new SoftAssertions();
+        softCheckBox.assertThat(driver.getTitle()).isEqualTo("Different Elements");
+        softCheckBox.assertAll();
 
     }
-
-    //Assert the images text
-    @Test
-    public void assertImagesText() {
-
-
-        String practicesPath = ".//span[contains(text(),'practices')]/../*/*[@class ='icons-benefit icon-practise']";
-        By practiseText = new By.ByXPath(practicesPath);
-        String customPath = ".//span[contains(text(),'flexible')]/../*/*[@class ='icons-benefit icon-custom']";
-        By customText = new By.ByXPath(customPath);
-        String multiPath = ".//span[contains(text(),'multiplatform')]/../*/*[@class ='icons-benefit icon-multi']";
-        By multiText = new By.ByXPath(multiPath);
-        String basePath = ".//span[contains(text(),'good base')]/../*/*[@class ='icons-benefit icon-base']";
-        By baseText = new By.ByXPath(basePath);
-        SoftAssertions softImagesText = new SoftAssertions();
-        softImagesText.assertThat(driver.findElements(practiseText).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(customText).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(multiText).size() != 0).isTrue();
-        softImagesText.assertThat(driver.findElements(baseText).size() != 0).isTrue();
-        softImagesText.assertAll();
-
-    }
-
-    //Assert the frame and frame button
-    @Test
-    public void assertIframe() {
-
-        driver.switchTo().frame("frame");
-        SoftAssertions softFrameButton = new SoftAssertions();
-        softFrameButton.assertThat(driver.findElements(By.id("frame-button")).size() != 0).isTrue();
-        softFrameButton.assertAll();
-        driver.switchTo().defaultContent();
-    }
-
-    //Assert the left side menu
-    @Test
-    public void assertSideMenu() {
-
-        List<String> expectedMenu = new ArrayList<>();
-        expectedMenu.add("Home");
-        expectedMenu.add("Contact form");
-        expectedMenu.add("Service");
-        expectedMenu.add("Metals & Colors");
-        expectedMenu.add("Elements packs");
-        List<String> actualMenu = new ArrayList<>();
-
-        By sideMenu = new By.ByXPath("//*[@id='mCSB_1_container']/ul/li");
-        List<WebElement> sideMenuItems = driver.findElements(sideMenu);
-        System.out.println(sideMenuItems.size());
-
-        for (WebElement i : sideMenuItems) {
-            actualMenu.add(i.getText());
-        }
-        SoftAssertions softLeftMenu = new SoftAssertions();
-        softLeftMenu.assertThat(actualMenu.size()).isEqualTo(5);
-        softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
-
-
-    }
-
 
 }

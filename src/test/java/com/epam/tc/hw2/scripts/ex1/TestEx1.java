@@ -93,9 +93,9 @@ public class TestEx1 extends InitializeKillWebSite {
                 + "customizable");
         softImagesText.assertThat(driver.findElement(multiText).getText()).isEqualTo("To be multiplatform");
         softImagesText.assertThat(driver.findElement(baseText).getText()).isEqualTo("Already have good base\n"
-                + "(about 20 internal and\n"
-                + "some external projects),\n"
-                + "wish to get more…");
+                        + "(about 20 internal and\n"
+                        + "some external projects),\n"
+                        + "wish to get more");
         softImagesText.assertAll();
 
     }
