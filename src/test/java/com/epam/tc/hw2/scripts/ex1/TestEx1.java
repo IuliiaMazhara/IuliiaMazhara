@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 public class TestEx1 extends InitializeKillWebSite {
 
-    //Assert the title of the page
+    //2. Assert Browser title
     @Test
     public void assertTitle() {
 
@@ -21,7 +21,9 @@ public class TestEx1 extends InitializeKillWebSite {
 
     }
 
-    //Assert the login of the user
+    //3. Perform login
+    //4 .Assert Username is logged
+
     @Test
     public void assertLogin() {
 
@@ -36,7 +38,7 @@ public class TestEx1 extends InitializeKillWebSite {
 
     }
 
-    //Assert the header menu
+    //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
     @Test
     public void assertHeader() {
 
@@ -55,7 +57,7 @@ public class TestEx1 extends InitializeKillWebSite {
     }
 
 
-    //Assert the images are on the page
+    //6. Assert that there are 4 images on the Index Page, and they are displayed
     @Test
     public void assertImages() {
 
@@ -72,7 +74,7 @@ public class TestEx1 extends InitializeKillWebSite {
 
     }
 
-    //Assert the text is under image and the text is correct
+    //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
     @Test
     public void assertTextUnderImage() {
 
@@ -93,14 +95,16 @@ public class TestEx1 extends InitializeKillWebSite {
                 + "customizable");
         softImagesText.assertThat(driver.findElement(multiText).getText()).isEqualTo("To be multiplatform");
         softImagesText.assertThat(driver.findElement(baseText).getText()).isEqualTo("Already have good base\n"
-                        + "(about 20 internal and\n"
-                        + "some external projects),\n"
-                        + "wish to get more");
+                       + "(about 20 internal and\n"
+                       + "some external projects),\n"
+                       + "wish to get more…");
         softImagesText.assertAll();
 
     }
 
-    //Assert the frame exist and frame button is within the frame
+    //8. Assert that there is the iframe with Frame Button exist
+    //9. Switch to the iframe and check that there is Frame Button in the iframe
+    //10. Switch to original window back
     @Test
     public void assertIframe() {
 
@@ -111,7 +115,7 @@ public class TestEx1 extends InitializeKillWebSite {
         driver.switchTo().defaultContent();
     }
 
-    //Assert the left side menu
+    //11. Assert that there are 5 items in theLeft Sectionare displayed and they have proper text
     @Test
     public void assertSideMenu() {
 

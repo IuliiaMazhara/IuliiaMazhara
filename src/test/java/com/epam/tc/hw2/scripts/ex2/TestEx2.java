@@ -41,14 +41,7 @@ public class TestEx2 extends InitializeKillWebSite {
     @Test
     public void assertCheckBox() {
 
-        By waterCheckBox = By.partialLinkText("Water");
-        By windCheckBox = By.partialLinkText("Wind");
-        driver.findElement(waterCheckBox).click();
-        driver.findElement(windCheckBox).click();
-        By waterCheckBoxChecked = By.partialLinkText("Water");
-        SoftAssertions softCheckBox = new SoftAssertions();
-        softCheckBox.assertThat(driver.getTitle()).isEqualTo("Different Elements");
-        softCheckBox.assertAll();
+
 
     }
 

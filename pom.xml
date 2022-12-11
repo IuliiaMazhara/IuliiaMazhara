@@ -20,6 +20,7 @@
         <assertj-core>3.23.1</assertj-core>
         <maven-compiler-plugin>3.10.1</maven-compiler-plugin>
         <maven-surefire-plugin>3.0.0-M7</maven-surefire-plugin>
+        <calc>1.0</calc>
     </properties>
     <dependencies>
         <dependency>
@@ -69,6 +70,13 @@
             <version>${assertj-core}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.calc</groupId>
+            <artifactId>calc</artifactId>
+            <version>${calc}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/calculator/calculator-1.0.jar</systemPath>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -115,6 +123,24 @@
             </activation>
             <properties>
                 <suite.xml.file>testRunForAllTestHM2.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>AllTestHM1</id>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>SubAdd</id>
+            <properties>
+                <suite.xml.file>suiteAddSubtractionTest.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>DivMultiple</id>
+            <properties>
+                <suite.xml.file>suiteMultipleDivideTest.xml</suite.xml.file>
             </properties>
         </profile>
     </profiles>

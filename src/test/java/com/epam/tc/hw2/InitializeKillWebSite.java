@@ -10,6 +10,7 @@ public abstract  class InitializeKillWebSite {
 
     protected WebDriver driver = new ChromeDriver();
 
+    //1. Open web browser by URL
     @BeforeClass
     public void initWebDriver() {
 
@@ -17,6 +18,7 @@ public abstract  class InitializeKillWebSite {
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
     }
 
+    //12. Close Browser
     @AfterClass
     public void releaseWebDriver() {
 
