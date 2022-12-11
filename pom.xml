@@ -107,4 +107,27 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>HM2</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>Ex1</id>
+            <properties>
+                <suite.xml.file>testRunForEx1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>Ex2</id>
+            <properties>
+                <suite.xml.file>testRunForEx2.xml</suite.xml.file>
+            </properties>
+        </profile>
+    </profiles>
 </project>
