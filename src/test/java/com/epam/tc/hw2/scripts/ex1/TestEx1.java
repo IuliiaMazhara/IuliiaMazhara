@@ -42,14 +42,10 @@ public class TestEx1 extends InitializeKillWebSite {
     @Test
     public void assertHeader() {
         SoftAssertions softHeader = new SoftAssertions();
-        By homeElement = By.partialLinkText("HOME");
-        By contactFormElement = By.partialLinkText("CONTACT FORM");
-        By serviceFormElement = By.partialLinkText("SERVICE");
-        By metalsColorsElement = By.partialLinkText("METALS & COLORS");
-        softHeader.assertThat(driver.findElement(homeElement).getText()).isEqualTo("HOME");
-        softHeader.assertThat(driver.findElement(contactFormElement).getText()).isEqualTo("CONTACT FORM");
-        softHeader.assertThat(driver.findElement(serviceFormElement).getText()).isEqualTo("SERVICE");
-        softHeader.assertThat(driver.findElement(metalsColorsElement).getText()).isEqualTo("METALS & COLORS");
+        softHeader.assertThat(driver.findElements(By.partialLinkText("HOME")).size() != 0).isTrue();
+        softHeader.assertThat(driver.findElements(By.partialLinkText("CONTACT FORM")).size() != 0).isTrue();
+        softHeader.assertThat(driver.findElements(By.partialLinkText("SERVICE")).size() != 0).isTrue();
+        softHeader.assertThat(driver.findElements(By.partialLinkText("METALS & COLORS")).size() != 0).isTrue();
         softHeader.assertAll();
     }
 
