@@ -4,6 +4,7 @@ import com.epam.tc.hw2.InitializeKillWebSite;
 import java.time.Duration;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -45,6 +46,8 @@ public class TestEx2 extends InitializeKillWebSite {
         By menuItemDifferentElements = By.partialLinkText("DIFFERENT ELEMENTS");
         driver.findElement(serviceFormElement).click();
         driver.findElement(menuItemDifferentElements).click();
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+         .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
         SoftAssertions softDifferentElements = new SoftAssertions();
         softDifferentElements.assertThat(driver.getTitle()).isEqualTo("Different Elements");
         softDifferentElements.assertAll();
