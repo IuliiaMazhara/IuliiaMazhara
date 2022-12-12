@@ -13,12 +13,9 @@ public class TestEx1 extends InitializeKillWebSite {
     //2. Assert Browser title
     @Test
     public void assertTitle() {
-
         SoftAssertions softTitle = new SoftAssertions();
         softTitle.assertThat(driver.getTitle()).isEqualTo("Home Page");
         softTitle.assertAll();
-
-
     }
 
     //3. Perform login
@@ -26,7 +23,6 @@ public class TestEx1 extends InitializeKillWebSite {
 
     @Test
     public void assertLogin() {
-
         driver.findElement(By.id("user-icon")).click();
         driver.findElement(By.id("name")).sendKeys("Roman");
         driver.findElement(By.id("password")).sendKeys("Jdi1234");
@@ -35,13 +31,11 @@ public class TestEx1 extends InitializeKillWebSite {
         SoftAssertions softLogin = new SoftAssertions();
         softLogin.assertThat(driver.findElement(userName).getText()).isEqualTo("ROMAN IOVLEV");
         softLogin.assertAll();
-
     }
 
     //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
     @Test
     public void assertHeader() {
-
         SoftAssertions softHeader = new SoftAssertions();
         By homeElement = By.partialLinkText("HOME");
         By contactFormElement = By.partialLinkText("CONTACT FORM");
@@ -52,15 +46,12 @@ public class TestEx1 extends InitializeKillWebSite {
         softHeader.assertThat(driver.findElement(serviceFormElement).getText()).isEqualTo("SERVICE");
         softHeader.assertThat(driver.findElement(metalsColorsElement).getText()).isEqualTo("METALS & COLORS");
         softHeader.assertAll();
-
-
     }
 
 
     //6. Assert that there are 4 images on the Index Page, and they are displayed
     @Test
     public void assertImages() {
-
         By iconPractise = By.cssSelector("[class='icons-benefit icon-practise']");
         By iconCustom = By.cssSelector("[class='icons-benefit icon-custom']");
         By iconBenefit = By.className("benefit-icon");
@@ -71,21 +62,18 @@ public class TestEx1 extends InitializeKillWebSite {
         softImages.assertThat(driver.findElements(iconBenefit).size() != 0).isTrue();
         softImages.assertThat(driver.findElements(iconBase).size() != 0).isTrue();
         softImages.assertAll();
-
     }
 
     //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
     @Test
     public void assertTextUnderImage() {
-
-
         String practicesPath = ".//*[@class='icons-benefit icon-practise']/..//../span[@class = 'benefit-txt']";
-        By practiseText = new By.ByXPath(practicesPath);
         String customPath = ".//*[@class='icons-benefit icon-custom']/..//../span[@class = 'benefit-txt']";
-        By customText = new By.ByXPath(customPath);
         String multiPath = ".//*[@class='icons-benefit icon-multi']/..//../span[@class = 'benefit-txt']";
-        By multiText = new By.ByXPath(multiPath);
         String basePath = ".//*[@class='icons-benefit icon-base']/..//../span[@class = 'benefit-txt']";
+        By practiseText = new By.ByXPath(practicesPath);
+        By customText = new By.ByXPath(customPath);
+        By multiText = new By.ByXPath(multiPath);
         By baseText = new By.ByXPath(basePath);
         SoftAssertions softImagesText = new SoftAssertions();
         softImagesText.assertThat(driver.findElement(practiseText).getText()).isEqualTo("To include good practices\n"
@@ -99,7 +87,6 @@ public class TestEx1 extends InitializeKillWebSite {
                        + "some external projects),\n"
                        + "wish to get more…");
         softImagesText.assertAll();
-
     }
 
     //8. Assert that there is the iframe with Frame Button exist
@@ -107,7 +94,6 @@ public class TestEx1 extends InitializeKillWebSite {
     //10. Switch to original window back
     @Test
     public void assertIframe() {
-
         driver.switchTo().frame("frame");
         SoftAssertions softFrameButton = new SoftAssertions();
         softFrameButton.assertThat(driver.findElements(By.id("frame-button")).size() != 0).isTrue();
@@ -115,10 +101,9 @@ public class TestEx1 extends InitializeKillWebSite {
         driver.switchTo().defaultContent();
     }
 
-    //11. Assert that there are 5 items in theLeft Sectionare displayed and they have proper text
+    //11. Assert that there are 5 items in theLeft Section are displayed, and they have proper text
     @Test
     public void assertSideMenu() {
-
         List<String> expectedMenu = new ArrayList<>();
         expectedMenu.add("Home");
         expectedMenu.add("Contact form");
@@ -126,20 +111,15 @@ public class TestEx1 extends InitializeKillWebSite {
         expectedMenu.add("Metals & Colors");
         expectedMenu.add("Elements packs");
         List<String> actualMenu = new ArrayList<>();
-
         By sideMenu = new By.ByXPath("//*[@id='mCSB_1_container']/ul/li");
         List<WebElement> sideMenuItems = driver.findElements(sideMenu);
         System.out.println(sideMenuItems.size());
-
         for (WebElement i : sideMenuItems) {
             actualMenu.add(i.getText());
         }
         SoftAssertions softLeftMenu = new SoftAssertions();
         softLeftMenu.assertThat(actualMenu.size()).isEqualTo(5);
         softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
-
-
     }
-
 
 }
