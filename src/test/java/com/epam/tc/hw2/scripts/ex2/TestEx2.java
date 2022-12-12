@@ -1,11 +1,15 @@
 package com.epam.tc.hw2.scripts.ex2;
 
 import com.epam.tc.hw2.InitializeKillWebSite;
+import java.time.Duration;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
 
 
 public class TestEx2 extends InitializeKillWebSite {
@@ -27,8 +31,10 @@ public class TestEx2 extends InitializeKillWebSite {
         driver.findElement(By.id("password")).sendKeys("Jdi1234");
         driver.findElement(By.cssSelector(("i[class='fa fa-sign-in']"))).click();
         By userName = By.id("user-name");
+        WebElement userNameElement = driver.findElement(userName);
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOf(userNameElement));
         SoftAssertions softLogin = new SoftAssertions();
-        softLogin.assertThat(driver.findElement(userName).getText()).isEqualTo("ROMAN IOVLEV");
+        softLogin.assertThat(userNameElement.getText()).isEqualTo("ROMAN IOVLEV");
         softLogin.assertAll();
     }
 
