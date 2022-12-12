@@ -114,7 +114,6 @@ public class TestEx1 extends InitializeKillWebSite {
         List<String> actualMenu = new ArrayList<>();
         By sideMenu = new By.ByXPath("//*[@id='mCSB_1_container']/ul/li");
         List<WebElement> sideMenuItems = driver.findElements(sideMenu);
-        System.out.println(sideMenuItems.size());
         for (WebElement i : sideMenuItems) {
             actualMenu.add(i.getText());
         }
