@@ -26,6 +26,7 @@ public abstract  class InitializeKillWebSite {
 
 
     //12. Close Browser
+    //10. Close Browser
     @AfterClass
     public void releaseWebDriver() {
         if (driver != null) {

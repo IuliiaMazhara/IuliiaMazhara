@@ -47,8 +47,8 @@ public class TestEx2 extends InitializeKillWebSite {
     //6. Select checkboxes, Elements are checked
     @Test(priority = 4)
     public void assertCheckBox() {
-        By waterCheckBox = new By.ByXPath("//label[@class='label-checkbox'][1]/*");
-        By windCheckBox = new By.ByXPath("//label[@class='label-checkbox'][3]/*");
+        By waterCheckBox = new By.ByXPath("//label[text()[contains(., ' Water')]]/*[@type='checkbox']");
+        By windCheckBox = new By.ByXPath("//label[text()[contains(., ' Wind')]]/*[@type='checkbox']");
         WebElement waterCheckBoxElement = driver.findElement(waterCheckBox);
         WebElement windCheckBoxElement = driver.findElement(windCheckBox);
         waterCheckBoxElement.click();
@@ -64,7 +64,7 @@ public class TestEx2 extends InitializeKillWebSite {
     //7. Select radio, Element is checked
     @Test(priority = 5)
     public void assertRadioBox() {
-        By radioSelen = new By.ByXPath("//label[@class='label-radio'][4]/*");
+        By radioSelen = new By.ByXPath("//label[text()[contains(., ' Selen')]]/*[@type='radio']");
         WebElement radioSelenElement = driver.findElement(radioSelen);
         driver.findElement(radioSelen).click();
         Boolean isSelenSelected = radioSelenElement.isSelected();
