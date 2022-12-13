@@ -41,7 +41,10 @@ public class TestEx1 extends InitializeKillWebSite {
     //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
     @Test
     public void assertHeader() {
+        List<WebElement> header = driver.findElements(By.xpath("//ul[@class='uui-navigation nav navbar-nav m-l8']/li"));
+        int headerMenuItemsSize = header.size();
         SoftAssertions softHeader = new SoftAssertions();
+        softHeader.assertThat(headerMenuItemsSize).isEqualTo(4);
         softHeader.assertThat(driver.findElements(By.partialLinkText("HOME")).size() != 0).isTrue();
         softHeader.assertThat(driver.findElements(By.partialLinkText("CONTACT FORM")).size() != 0).isTrue();
         softHeader.assertThat(driver.findElements(By.partialLinkText("SERVICE")).size() != 0).isTrue();
