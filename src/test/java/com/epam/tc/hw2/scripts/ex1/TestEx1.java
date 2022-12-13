@@ -58,9 +58,11 @@ public class TestEx1 extends InitializeKillWebSite {
     public void assertImages() {
         By iconPractise = By.cssSelector("[class='icons-benefit icon-practise']");
         By iconCustom = By.cssSelector("[class='icons-benefit icon-custom']");
-        By iconBenefit = By.className("benefit-icon");
+        By iconBenefit = By.cssSelector("[class='icons-benefit icon-multi']");
         By iconBase = By.cssSelector("[class='icons-benefit icon-base']");
+        List<WebElement> listOfTheImages = driver.findElements(By.className("benefit-icon"));
         SoftAssertions softImages = new SoftAssertions();
+        softImages.assertThat(listOfTheImages.size()).isEqualTo(4);
         softImages.assertThat(driver.findElements(iconPractise).size() != 0).isTrue();
         softImages.assertThat(driver.findElements(iconCustom).size() != 0).isTrue();
         softImages.assertThat(driver.findElements(iconBenefit).size() != 0).isTrue();
@@ -79,7 +81,9 @@ public class TestEx1 extends InitializeKillWebSite {
         By customText = new By.ByXPath(customPath);
         By multiText = new By.ByXPath(multiPath);
         By baseText = new By.ByXPath(basePath);
+        List<WebElement> listOfTheText = driver.findElements(By.className("benefit-txt"));
         SoftAssertions softImagesText = new SoftAssertions();
+        softImagesText.assertThat(listOfTheText.size()).isEqualTo(4);
         softImagesText.assertThat(driver.findElement(practiseText).getText()).isEqualTo("To include good practices\n"
                 + "and ideas from successful\n"
                 + "EPAM project");
