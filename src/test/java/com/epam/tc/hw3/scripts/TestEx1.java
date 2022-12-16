@@ -8,9 +8,12 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 
@@ -24,6 +27,7 @@ public class TestEx1 extends BaseTest {
         softTitle.assertThat(webDriver.getTitle()).isEqualTo("Home Page");
         softTitle.assertAll();
     }
+
 
     //3. Perform login
     //4 .Assert Username is logged
@@ -121,6 +125,20 @@ public class TestEx1 extends BaseTest {
         SoftAssertions softLeftMenu = new SoftAssertions();
         softLeftMenu.assertThat(actualMenu.size()).isEqualTo(5);
         softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
+    }
+
+    @Test
+    @Parameters({"menuItem", "pageTitle"})
+    public void parameterTest(String menuItem, String pageTitle) {
+        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
+        pageObjectHome.clickServiceMenu();
+        By menuItems = By.partialLinkText(menuItem);
+        webDriver.findElement(menuItems).click();
+        new WebDriverWait(webDriver, Duration.ofSeconds(3))
+                .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
+        SoftAssertions softTitle = new SoftAssertions();
+        softTitle.assertThat(webDriver.getTitle()).isEqualTo(pageTitle);
+        softTitle.assertAll();
     }
 
 }

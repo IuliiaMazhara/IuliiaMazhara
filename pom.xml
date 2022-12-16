@@ -121,15 +121,12 @@
     <profiles>
         <profile>
             <id>HM2</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <suite.xml.file>testRunForAllTestHM2.xml</suite.xml.file>
             </properties>
         </profile>
         <profile>
-            <id>AllTestHM1</id>
+            <id>HM1</id>
             <properties>
                 <suite.xml.file>testRunForAllTestHM1.xml</suite.xml.file>
             </properties>
@@ -148,6 +145,9 @@
         </profile>
         <profile>
             <id>HM3</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <suite.xml.file>testRunForAllTestHM3.xml</suite.xml.file>
             </properties>

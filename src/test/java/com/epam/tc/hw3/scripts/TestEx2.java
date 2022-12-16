@@ -7,10 +7,13 @@ import com.epam.tc.hw3.pages.PageObjectHome;
 import java.io.IOException;
 import java.time.Duration;
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
@@ -69,15 +72,23 @@ public class TestEx2 extends BaseTest {
     }
 
     //7. Select radio, Element is checked
-    @Test(priority = 5)
-    public void assertRadioBox() {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
-        pageObjectDifferentElements.chooseSelenRadioBox();
-        Boolean isSelenSelected = pageObjectDifferentElements.getRadioSelen().isSelected();
+    @Test(priority = 5, dataProvider = "data-provider-for-radio-button")
+    public void assertRadioBox(String element) {
+        String el = element;
+        By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + el + "')]]/*[@type='radio']");
+        WebElement radioElement = webDriver.findElement(radioMetalPath);
+        radioElement.click();
+        Boolean isMetalSelected = radioElement.isSelected();
         SoftAssertions softRadio = new SoftAssertions();
-        softRadio.assertThat(isSelenSelected).isTrue();
+        softRadio.assertThat(isMetalSelected).isTrue();
         softRadio.assertAll();
     }
+
+    @DataProvider(name = "data-provider-for-radio-button")
+    public Object[][] dataSetForAddition() {
+        return new Object[][]{{"Gold"}, {"Silver"}, {"Bronze"}, {"Selen"}};
+    }
+
 
     //8. Select in dropdown, Element is selected
     @Test(priority = 6)

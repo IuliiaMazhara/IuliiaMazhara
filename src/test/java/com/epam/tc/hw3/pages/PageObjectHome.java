@@ -88,6 +88,8 @@ public class PageObjectHome {
     @FindBy(xpath = "//*[@id='mCSB_1_container']/ul/li")
     private List<WebElement> sideMenuItems;
 
+
+
     public PageObjectHome(WebDriver driver) {
         PageFactory.initElements(driver, this);
 
