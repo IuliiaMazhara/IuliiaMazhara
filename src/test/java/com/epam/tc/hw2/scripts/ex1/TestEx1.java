@@ -1,8 +1,7 @@
 package com.epam.tc.hw2.scripts.ex1;
 
 
-import static com.epam.tc.hw3.ConfigReader.getUserName;
-import static com.epam.tc.hw3.ConfigReader.getUserPassword;
+
 
 import com.epam.tc.hw2.InitializeKillWebSite;
 import java.io.IOException;
@@ -14,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
@@ -33,8 +33,8 @@ public class TestEx1 extends InitializeKillWebSite {
     @Test
     public void assertLogin() throws IOException {
         driver.findElement(By.id("user-icon")).click();
-        driver.findElement(By.id("name")).sendKeys(getUserName());
-        driver.findElement(By.id("password")).sendKeys(getUserPassword());
+        driver.findElement(By.id("name")).sendKeys("Roman");
+        driver.findElement(By.id("password")).sendKeys("Jdi1234");
         driver.findElement(By.cssSelector(("i[class='fa fa-sign-in']"))).click();
         By userName = By.id("user-name");
         WebElement userNameElement = driver.findElement(userName);
@@ -134,5 +134,11 @@ public class TestEx1 extends InitializeKillWebSite {
         softLeftMenu.assertThat(actualMenu.size()).isEqualTo(5);
         softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
     }
+
+    @DataProvider(name = "dataProviderToTestSideMenu")
+    public Object[][] dataSetForAddition() {
+        return new Object[][]{{"Contact form", "Contact Form"}, {"Metals & Colors", "Metal and Colors"}};
+    }
+
 
 }

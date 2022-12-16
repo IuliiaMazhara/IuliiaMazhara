@@ -1,4 +1,4 @@
-package com.epam.tc.hw3;
+package com.epam.tc.hw3.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,11 +15,11 @@ public class ConfigReader {
         return prop;
     }
 
-    public static String getUserName() throws IOException {
+    public static String getUserNameFromProperties() throws IOException {
         return getPropertyObject().getProperty("userName");
     }
 
-    public static String getUserPassword() throws IOException {
+    public static String getUserPasswordFromProperties() throws IOException {
         return getPropertyObject().getProperty("password");
     }
 

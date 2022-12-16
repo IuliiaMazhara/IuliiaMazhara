@@ -146,5 +146,11 @@
                 <suite.xml.file>suiteMultipleDivideTest.xml</suite.xml.file>
             </properties>
         </profile>
+        <profile>
+            <id>HM3</id>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM3.xml</suite.xml.file>
+            </properties>
+        </profile>
     </profiles>
 </project>
