@@ -62,11 +62,9 @@ public class TestEx2 extends InitializeKillWebSite {
         WebElement windCheckBoxElement = driver.findElement(windCheckBox);
         waterCheckBoxElement.click();
         windCheckBoxElement.click();
-        boolean isWaterSelected = waterCheckBoxElement.isSelected();
-        boolean isWindSelected = windCheckBoxElement.isSelected();
         SoftAssertions softCheckBox = new SoftAssertions();
-        softCheckBox.assertThat(isWaterSelected).isTrue();
-        softCheckBox.assertThat(isWindSelected).isTrue();
+        softCheckBox.assertThat(waterCheckBoxElement.isSelected()).isTrue();
+        softCheckBox.assertThat(windCheckBoxElement.isSelected()).isTrue();
         softCheckBox.assertAll();
     }
 
@@ -76,9 +74,8 @@ public class TestEx2 extends InitializeKillWebSite {
         By radioSelen = new By.ByXPath("//label[text()[contains(., ' Selen')]]/*[@type='radio']");
         WebElement radioSelenElement = driver.findElement(radioSelen);
         driver.findElement(radioSelen).click();
-        Boolean isSelenSelected = radioSelenElement.isSelected();
         SoftAssertions softRadio = new SoftAssertions();
-        softRadio.assertThat(isSelenSelected).isTrue();
+        softRadio.assertThat(radioSelenElement.isSelected()).isTrue();
         softRadio.assertAll();
     }
 
@@ -89,11 +86,9 @@ public class TestEx2 extends InitializeKillWebSite {
         driver.findElement(dropDownColor).click();
         Select dropDownColors = new Select(driver.findElement(dropDownColor));
         dropDownColors.selectByVisibleText("Yellow");
-        String selectedOption = dropDownColors.getFirstSelectedOption().getText();
         SoftAssertions softDropDown = new SoftAssertions();
-        softDropDown.assertThat(selectedOption).isEqualTo("Yellow");
+        softDropDown.assertThat(dropDownColors.getFirstSelectedOption().getText()).isEqualTo("Yellow");
         softDropDown.assertAll();
-
     }
 
     //9. Assert that for each checkbox there is an individual log row
@@ -103,7 +98,6 @@ public class TestEx2 extends InitializeKillWebSite {
 
     @Test(priority = 7)
     public void assertLogger() {
-        SoftAssertions logger = new SoftAssertions();
         String waterLogPath = "//*[contains(text(),'Water: condition changed to true')]";
         String windLogPath = "//*[contains(text(),'Wind: condition changed to true')]";
         String selenLogPath = "//*[contains(text(),'metal: value changed to  Selen')]";
