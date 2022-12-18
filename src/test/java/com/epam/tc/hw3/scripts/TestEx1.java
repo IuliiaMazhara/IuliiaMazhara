@@ -50,13 +50,13 @@ public class TestEx1 extends BaseTest {
     @Test
     public void assertHeaderMenu() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        int headerMenuItemsSize = pageObjectHome.getHeaderMenu().size();
+        int headerMenuSize = pageObjectHome.getHeaderPageElements().headerMenuSize();
         SoftAssertions softHeader = new SoftAssertions();
-        softHeader.assertThat(headerMenuItemsSize).isEqualTo(4);
-        softHeader.assertThat(pageObjectHome.getHomeHeaderMenuItem().isDisplayed());
-        softHeader.assertThat(pageObjectHome.getContactFormHeaderMenuItem().isDisplayed());
-        softHeader.assertThat(pageObjectHome.getServiceHeaderMenuItem().isDisplayed());
-        softHeader.assertThat(pageObjectHome.getMetalsAndColorsHeaderMenuItem().isDisplayed());
+        softHeader.assertThat(headerMenuSize).isEqualTo(4);
+        softHeader.assertThat(pageObjectHome.getHeaderPageElements().getFormHeaderItem().isDisplayed());
+        softHeader.assertThat(pageObjectHome.getHeaderPageElements().getServiceHeaderItem().isDisplayed());
+        softHeader.assertThat(pageObjectHome.getHeaderPageElements().getMetalsAndColorsHeaderItem().isDisplayed());
+        softHeader.assertThat(pageObjectHome.getHeaderPageElements().getHomeHeaderItem().isDisplayed());
         softHeader.assertAll();
     }
 
@@ -131,7 +131,7 @@ public class TestEx1 extends BaseTest {
     @Parameters({"menuItem", "pageTitle"})
     public void parameterTest(String menuItem, String pageTitle) {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        pageObjectHome.clickServiceMenu();
+        pageObjectHome.getHeaderPageElements().clickOnServiceItem();
         By menuItems = By.partialLinkText(menuItem);
         webDriver.findElement(menuItems).click();
         new WebDriverWait(webDriver, Duration.ofSeconds(3))

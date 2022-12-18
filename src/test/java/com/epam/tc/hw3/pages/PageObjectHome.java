@@ -4,6 +4,7 @@ package com.epam.tc.hw3.pages;
 import static com.epam.tc.hw3.utils.ConfigReader.getUserNameFromProperties;
 import static com.epam.tc.hw3.utils.ConfigReader.getUserPasswordFromProperties;
 
+import com.epam.tc.hw3.pages.components.HeaderMenuComponent;
 import java.io.IOException;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageObjectHome {
 
-
+    private final HeaderMenuComponent headerPageElements;
     @FindBy(id = "user-icon")
     private WebElement userIcon;
 
@@ -30,21 +31,6 @@ public class PageObjectHome {
 
     @FindBy(id = "user-name")
     private WebElement namedOfLoggedUser;
-
-    @FindBy(xpath = "//ul[@class='uui-navigation nav navbar-nav m-l8']/li")
-    private WebElement headerMenuContainer;
-
-    @FindBy(partialLinkText = "HOME")
-    private WebElement homeHeaderMenuItem;
-
-    @FindBy(partialLinkText = "CONTACT FORM")
-    private WebElement contactFormHeaderMenuItem;
-
-    @FindBy(partialLinkText = "SERVICE")
-    private WebElement serviceHeaderMenuItem;
-
-    @FindBy(partialLinkText = "METALS & COLORS")
-    private WebElement metalsAndColorsHeaderMenuItem;
 
     @FindBy(css = "[class='icons-benefit icon-practise']")
     private WebElement iconPractise;
@@ -92,7 +78,14 @@ public class PageObjectHome {
 
     public PageObjectHome(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        headerPageElements = new HeaderMenuComponent();
+        PageFactory.initElements(driver, headerPageElements);
 
+
+    }
+
+    public HeaderMenuComponent getHeaderPageElements() {
+        return headerPageElements;
     }
 
     public List<WebElement> getHeaderMenu() {
@@ -171,26 +164,6 @@ public class PageObjectHome {
         signInButton.click();
     }
 
-    public WebElement getHeaderMenuContainer() {
-        return headerMenuContainer;
-    }
-
-    public WebElement getHomeHeaderMenuItem() {
-        return homeHeaderMenuItem;
-    }
-
-    public WebElement getContactFormHeaderMenuItem() {
-        return contactFormHeaderMenuItem;
-    }
-
-    public WebElement getServiceHeaderMenuItem() {
-        return serviceHeaderMenuItem;
-    }
-
-    public WebElement getMetalsAndColorsHeaderMenuItem() {
-        return metalsAndColorsHeaderMenuItem;
-    }
-
     public WebElement getNamedOfLoggedUser() {
         return namedOfLoggedUser;
     }
@@ -209,10 +182,6 @@ public class PageObjectHome {
 
     public void clickDifferentElementServiceMenuItem() {
         differentElementServiceMenuItem.click();
-    }
-
-    public void clickServiceMenu() {
-        serviceHeaderMenuItem.click();
     }
 
 }

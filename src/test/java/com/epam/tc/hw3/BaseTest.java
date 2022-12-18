@@ -11,7 +11,6 @@ public class BaseTest {
 
     public static WebDriver webDriver;
 
-
     @BeforeClass
     public static void prepareToTest() {
         webDriver = new DriverManager().setupDriver();

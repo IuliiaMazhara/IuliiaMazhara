@@ -49,7 +49,7 @@ public class TestEx2 extends BaseTest {
     @Test(priority = 3)
     public void navigateToDifferentElementsPage() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        pageObjectHome.clickServiceMenu();
+        pageObjectHome.getHeaderPageElements().clickOnServiceItem();
         pageObjectHome.clickDifferentElementServiceMenuItem();
         new WebDriverWait(webDriver, Duration.ofSeconds(3))
          .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
