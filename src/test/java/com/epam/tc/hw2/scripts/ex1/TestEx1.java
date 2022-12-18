@@ -43,12 +43,18 @@ public class TestEx1 extends InitializeKillWebSite {
     public void assertHeader() {
         List<WebElement> header = driver.findElements(By.xpath("//ul[@class='uui-navigation nav navbar-nav m-l8']/li"));
         int headerMenuItemsSize = header.size();
+        SoftAssertions softHeaderSize = new SoftAssertions();
+        softHeaderSize.assertThat(headerMenuItemsSize).isEqualTo(4);
+        softHeaderSize.assertAll();
+        WebElement homeElement = driver.findElement(By.partialLinkText("HOME"));
+        WebElement contactFormElement = driver.findElement(By.partialLinkText("CONTACT FORM"));
+        WebElement serviceElement = driver.findElement(By.partialLinkText("SERVICE"));
+        WebElement metalsColorsElement = driver.findElement(By.partialLinkText("METALS & COLORS"));
         SoftAssertions softHeader = new SoftAssertions();
-        softHeader.assertThat(headerMenuItemsSize).isEqualTo(4);
-        softHeader.assertThat(driver.findElements(By.partialLinkText("HOME")).size() != 0).isTrue();
-        softHeader.assertThat(driver.findElements(By.partialLinkText("CONTACT FORM")).size() != 0).isTrue();
-        softHeader.assertThat(driver.findElements(By.partialLinkText("SERVICE")).size() != 0).isTrue();
-        softHeader.assertThat(driver.findElements(By.partialLinkText("METALS & COLORS")).size() != 0).isTrue();
+        softHeader.assertThat(homeElement.isDisplayed());
+        softHeader.assertThat(contactFormElement.isDisplayed());
+        softHeader.assertThat(serviceElement.isDisplayed());
+        softHeader.assertThat(metalsColorsElement.isDisplayed());
         softHeader.assertAll();
     }
 
@@ -56,17 +62,20 @@ public class TestEx1 extends InitializeKillWebSite {
     //6. Assert that there are 4 images on the Index Page, and they are displayed
     @Test
     public void assertImages() {
-        By iconPractise = By.cssSelector("[class='icons-benefit icon-practise']");
-        By iconCustom = By.cssSelector("[class='icons-benefit icon-custom']");
-        By iconBenefit = By.cssSelector("[class='icons-benefit icon-multi']");
-        By iconBase = By.cssSelector("[class='icons-benefit icon-base']");
         List<WebElement> listOfTheImages = driver.findElements(By.className("benefit-icon"));
+        int numberOfImages = listOfTheImages.size();
+        SoftAssertions softNumberImages = new SoftAssertions();
+        softNumberImages.assertThat(numberOfImages).isEqualTo(4);
+        softNumberImages.assertAll();
+        WebElement iconPractise = driver.findElement(By.cssSelector(".icon-practise"));
+        WebElement iconCustom = driver.findElement(By.cssSelector(".icon-custom"));
+        WebElement iconMulti = driver.findElement(By.cssSelector(".icon-multi"));
+        WebElement iconBase = driver.findElement(By.cssSelector(".icon-base"));
         SoftAssertions softImages = new SoftAssertions();
-        softImages.assertThat(listOfTheImages.size()).isEqualTo(4);
-        softImages.assertThat(driver.findElements(iconPractise).size() != 0).isTrue();
-        softImages.assertThat(driver.findElements(iconCustom).size() != 0).isTrue();
-        softImages.assertThat(driver.findElements(iconBenefit).size() != 0).isTrue();
-        softImages.assertThat(driver.findElements(iconBase).size() != 0).isTrue();
+        softImages.assertThat(iconPractise.isDisplayed());
+        softImages.assertThat(iconCustom.isDisplayed());
+        softImages.assertThat(iconMulti.isDisplayed());
+        softImages.assertThat(iconBase.isDisplayed());
         softImages.assertAll();
     }
 
@@ -77,20 +86,20 @@ public class TestEx1 extends InitializeKillWebSite {
         String customPath = ".//*[@class='icons-benefit icon-custom']/..//../span[@class = 'benefit-txt']";
         String multiPath = ".//*[@class='icons-benefit icon-multi']/..//../span[@class = 'benefit-txt']";
         String basePath = ".//*[@class='icons-benefit icon-base']/..//../span[@class = 'benefit-txt']";
-        By practiseText = new By.ByXPath(practicesPath);
-        By customText = new By.ByXPath(customPath);
-        By multiText = new By.ByXPath(multiPath);
-        By baseText = new By.ByXPath(basePath);
+        WebElement practiseText = driver.findElement(new By.ByXPath(practicesPath));
+        WebElement customText = driver.findElement(new By.ByXPath(customPath));
+        WebElement multiText = driver.findElement(new By.ByXPath(multiPath));
+        WebElement baseText = driver.findElement(new By.ByXPath(basePath));
         List<WebElement> listOfTheText = driver.findElements(By.className("benefit-txt"));
         SoftAssertions softImagesText = new SoftAssertions();
         softImagesText.assertThat(listOfTheText.size()).isEqualTo(4);
-        softImagesText.assertThat(driver.findElement(practiseText).getText()).isEqualTo("To include good practices\n"
+        softImagesText.assertThat(practiseText.getText()).isEqualTo("To include good practices\n"
                 + "and ideas from successful\n"
                 + "EPAM project");
-        softImagesText.assertThat(driver.findElement(customText).getText()).isEqualTo("To be flexible and\n"
+        softImagesText.assertThat(customText.getText()).isEqualTo("To be flexible and\n"
                 + "customizable");
-        softImagesText.assertThat(driver.findElement(multiText).getText()).isEqualTo("To be multiplatform");
-        softImagesText.assertThat(driver.findElement(baseText).getText()).isEqualTo("Already have good base\n"
+        softImagesText.assertThat(multiText.getText()).isEqualTo("To be multiplatform");
+        softImagesText.assertThat(baseText.getText()).isEqualTo("Already have good base\n"
                        + "(about 20 internal and\n"
                        + "some external projects),\n"
                        + "wish to get more…");
@@ -103,8 +112,9 @@ public class TestEx1 extends InitializeKillWebSite {
     @Test
     public void assertIframe() {
         driver.switchTo().frame("frame");
+        WebElement frameButton = driver.findElement(By.id("frame-button"));
         SoftAssertions softFrameButton = new SoftAssertions();
-        softFrameButton.assertThat(driver.findElements(By.id("frame-button")).size() != 0).isTrue();
+        softFrameButton.assertThat(frameButton.isDisplayed());
         softFrameButton.assertAll();
         driver.switchTo().defaultContent();
     }

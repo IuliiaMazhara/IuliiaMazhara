@@ -42,10 +42,10 @@ public class TestEx2 extends InitializeKillWebSite {
     //5. Open through the header menu Service -> Different Elements Page
     @Test(priority = 3)
     public void navigateToDifferentElementsPage() {
-        By serviceFormElement = By.partialLinkText("SERVICE");
-        By menuItemDifferentElements = By.partialLinkText("DIFFERENT ELEMENTS");
-        driver.findElement(serviceFormElement).click();
-        driver.findElement(menuItemDifferentElements).click();
+        WebElement serviceElement = driver.findElement(By.partialLinkText("SERVICE"));
+        serviceElement.click();
+        WebElement menuItemDifferentElements = driver.findElement(By.partialLinkText("DIFFERENT ELEMENTS"));
+        menuItemDifferentElements.click();
         new WebDriverWait(driver, Duration.ofSeconds(3))
          .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
         SoftAssertions softDifferentElements = new SoftAssertions();
@@ -101,18 +101,22 @@ public class TestEx2 extends InitializeKillWebSite {
     //9. Assert that for radio button there is a log row and value is corresponded to the status of radio button
     //9. Assert that for dropdown there is a log row and value is corresponded to the selected value.
 
-    @Test
+    @Test(priority = 7)
     public void assertLogger() {
         SoftAssertions logger = new SoftAssertions();
-        By waterCheckedLog = new By.ByXPath("//*[contains(text(),'Water: condition changed to true')]");
-        By windCheckedLog = new By.ByXPath("//*[contains(text(),'Wind: condition changed to true')]");
-        By selenCheckedLog = new By.ByXPath("//*[contains(text(),'metal: value changed to  Selen')]");
-        By yellowCheckedLog = new By.ByXPath("//*[contains(text(),'Colors: value changed to Yellow')]");
-        logger.assertThat(driver.findElements(waterCheckedLog).size() != 0).isTrue();
-        logger.assertThat(driver.findElements(windCheckedLog).size() != 0).isTrue();
-        logger.assertThat(driver.findElements(selenCheckedLog).size() != 0).isTrue();
-        logger.assertThat(driver.findElements(yellowCheckedLog).size() != 0).isTrue();
-
+        String waterLogPath = "//*[contains(text(),'Water: condition changed to true')]";
+        String windLogPath = "//*[contains(text(),'Wind: condition changed to true')]";
+        String selenLogPath = "//*[contains(text(),'metal: value changed to  Selen')]";
+        String yellowLogPath = "//*[contains(text(),'Colors: value changed to Yellow')]";
+        WebElement waterLog = driver.findElement(new By.ByXPath(waterLogPath));
+        WebElement windLog = driver.findElement(new By.ByXPath(windLogPath));
+        WebElement selenLog = driver.findElement(new By.ByXPath(selenLogPath));
+        WebElement yellowLog = driver.findElement(new By.ByXPath(yellowLogPath));
+        SoftAssertions softLog = new SoftAssertions();
+        softLog.assertThat(waterLog.isDisplayed());
+        softLog.assertThat(windLog.isDisplayed());
+        softLog.assertThat(selenLog.isDisplayed());
+        softLog.assertThat(yellowLog.isDisplayed());
     }
 
 }
