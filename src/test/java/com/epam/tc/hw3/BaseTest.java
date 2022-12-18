@@ -8,14 +8,12 @@ import org.testng.annotations.BeforeClass;
 
 
 public class BaseTest {
-
     public static WebDriver webDriver;
 
     @BeforeClass
     public static void prepareToTest() {
         webDriver = new DriverManager().setupDriver();
     }
-
 
     @AfterClass
     public static void tearDownDriver() {

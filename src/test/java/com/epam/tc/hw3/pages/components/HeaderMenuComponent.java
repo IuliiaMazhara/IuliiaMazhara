@@ -46,7 +46,6 @@ public class HeaderMenuComponent {
         return navigationHeader.size();
     }
 
-
     public void clickOnServiceItem() {
         serviceHeaderItem.click();
     }

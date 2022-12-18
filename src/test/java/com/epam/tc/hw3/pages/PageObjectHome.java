@@ -83,7 +83,6 @@ public class PageObjectHome {
 
 
     }
-
     public HeaderMenuComponent getHeaderPageElements() {
         return headerPageElements;
     }
