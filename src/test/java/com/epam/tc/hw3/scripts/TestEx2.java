@@ -2,6 +2,7 @@ package com.epam.tc.hw3.scripts;
 
 
 import com.epam.tc.hw3.BaseTest;
+import com.epam.tc.hw3.pages.DropDownOfColorsOnDifferentElementPage;
 import com.epam.tc.hw3.pages.PageObjectDifferentElements;
 import com.epam.tc.hw3.pages.PageObjectHome;
 import java.io.IOException;
@@ -93,15 +94,8 @@ public class TestEx2 extends BaseTest {
     //8. Select in dropdown, Element is selected
     @Test(priority = 6)
     public void assertDropDown() {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
-        pageObjectDifferentElements.getDropDownColor();
-        Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownColor());
-        dropDownColors.selectByVisibleText("Yellow");
-        String selectedOption = dropDownColors.getFirstSelectedOption().getText();
-        SoftAssertions softDropDown = new SoftAssertions();
-        softDropDown.assertThat(selectedOption).isEqualTo("Yellow");
-        softDropDown.assertAll();
-
+        DropDownOfColorsOnDifferentElementPage dropDown = new DropDownOfColorsOnDifferentElementPage(webDriver);
+        dropDown.assertSelectedDropDownItem("Yellow");
     }
 
     //9. Assert that for each checkbox there is an individual log row
@@ -109,7 +103,7 @@ public class TestEx2 extends BaseTest {
     //9. Assert that for radio button there is a log row and value is corresponded to the status of radio button
     //9. Assert that for dropdown there is a log row and value is corresponded to the selected value.
 
-    @Test(priority = 7)
+    @Test(priority = 8)
     public void assertLogger() {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         SoftAssertions logger = new SoftAssertions();

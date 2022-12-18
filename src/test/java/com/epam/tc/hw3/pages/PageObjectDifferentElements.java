@@ -1,7 +1,6 @@
 package com.epam.tc.hw3.pages;
 
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,9 +18,6 @@ public class PageObjectDifferentElements {
 
     @FindBy(xpath = "//label[text()[contains(., ' Selen')]]/*[@type='radio']")
     private WebElement radioSelen;
-
-    @FindBy(xpath = ".//*[@class='colors']//*[@class='uui-form-element']")
-    private WebElement dropDownColor;
 
     @FindBy(xpath = "//*[contains(text(),'Water: condition changed to true')]")
     private WebElement waterCheckedLog;
@@ -49,10 +45,6 @@ public class PageObjectDifferentElements {
 
     public WebElement getRadioSelen() {
         return radioSelen;
-    }
-
-    public WebElement getDropDownColor() {
-        return dropDownColor;
     }
 
     public WebElement getWaterCheckedLog() {
@@ -83,10 +75,4 @@ public class PageObjectDifferentElements {
         radioSelen.click();
     }
 
-    public void clickOnColorDropdown() {
-        dropDownColor.click();
-    }
-
 }
-
-
