@@ -40,7 +40,7 @@ public class TestEx1 extends InitializeKillWebSite {
         driver.findElement(By.id("user-icon")).click();
         driver.findElement(By.id("name")).sendKeys("Roman");
         driver.findElement(By.id("password")).sendKeys("Jdi1234");
-        driver.findElement(By.cssSelector(("i[class='fa fa-sign-in']"))).click();
+        driver.findElement(By.id(("login-button"))).click();
         By userName = By.id("user-name");
         WebElement userNameElement = driver.findElement(userName);
         new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOf(userNameElement));
@@ -52,7 +52,7 @@ public class TestEx1 extends InitializeKillWebSite {
     //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
 
     public void assertHeader() {
-        String sideMenuPath = "[class='uui-navigation nav navbar-nav m-l8']>li";
+        String sideMenuPath = "ul.uui-navigation.nav.navbar-nav.m-l8 > li";
         List<WebElement> header = driver.findElements(By.cssSelector(sideMenuPath));
         int headerMenuItemsSize = header.size();
         SoftAssertions softHeaderSize = new SoftAssertions();
