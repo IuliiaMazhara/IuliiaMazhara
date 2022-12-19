@@ -2,7 +2,6 @@ package com.epam.tc.hw3.scripts;
 
 
 import com.epam.tc.hw3.BaseTest;
-import com.epam.tc.hw3.pages.components.DropDownComponent;
 import com.epam.tc.hw3.pages.PageObjectDifferentElements;
 import com.epam.tc.hw3.pages.PageObjectHome;
 import com.epam.tc.hw3.pages.PageObjectLoginPage;
@@ -98,12 +97,12 @@ public class TestEx2 extends BaseTest {
     public void assertDropDown() {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
-            Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
-            dropDownColors.selectByVisibleText("Yellow");
-            String selectedOption = dropDownColors.getFirstSelectedOption().getText();
-            SoftAssertions softDropDown = new SoftAssertions();
-            softDropDown.assertThat(selectedOption).isEqualTo("Yellow");
-            softDropDown.assertAll();
+        Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
+        dropDownColors.selectByVisibleText("Yellow");
+        String selectedOption = dropDownColors.getFirstSelectedOption().getText();
+        SoftAssertions softDropDown = new SoftAssertions();
+        softDropDown.assertThat(selectedOption).isEqualTo("Yellow");
+        softDropDown.assertAll();
     }
 
     //9. Assert that for each checkbox there is an individual log row

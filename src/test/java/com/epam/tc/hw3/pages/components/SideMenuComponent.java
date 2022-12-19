@@ -1,10 +1,10 @@
 package com.epam.tc.hw3.pages.components;
 
 
+import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
 
 public class SideMenuComponent {
 

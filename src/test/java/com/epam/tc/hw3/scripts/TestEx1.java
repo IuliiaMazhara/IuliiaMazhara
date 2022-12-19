@@ -80,7 +80,6 @@ public class TestEx1 extends BaseTest {
     //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
     @Test
     public void assertTextUnderImage() {
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         List<String> expectedText = new ArrayList<>();
         expectedText.add("To include good practices\n"
                 + "and ideas from successful\n"
@@ -92,6 +91,7 @@ public class TestEx1 extends BaseTest {
                 + "(about 20 internal and\n"
                 + "some external projects),\n"
                 + "wish to get more…");
+        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         List<String> actualText = new ArrayList<>();
         for (WebElement i : pageObjectHome.getListOfTheText()) {
             actualText.add(i.getText());

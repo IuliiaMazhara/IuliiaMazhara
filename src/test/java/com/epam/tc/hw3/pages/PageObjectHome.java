@@ -1,14 +1,9 @@
 package com.epam.tc.hw3.pages;
 
 
-import static com.epam.tc.hw3.utils.ConfigReader.getUserNameFromProperties;
-import static com.epam.tc.hw3.utils.ConfigReader.getUserPasswordFromProperties;
-
 import com.epam.tc.hw3.pages.components.HeaderMenuComponent;
-import java.io.IOException;
-import java.util.List;
-
 import com.epam.tc.hw3.pages.components.SideMenuComponent;
+import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
