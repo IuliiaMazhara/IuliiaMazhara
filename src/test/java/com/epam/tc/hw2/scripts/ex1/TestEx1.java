@@ -13,8 +13,19 @@ import org.testng.annotations.Test;
 
 public class TestEx1 extends InitializeKillWebSite {
 
-    //2. Assert Browser title
     @Test
+    public void verifyMainPage() {
+        assertTitle();
+        assertLogin();
+        assertHeader();
+        assertImages();
+        assertTextUnderImage();
+        assertIframe();
+        assertSideMenu();
+    }
+
+    //2. Assert Browser title
+
     public void assertTitle() {
         SoftAssertions softTitle = new SoftAssertions();
         softTitle.assertThat(driver.getTitle()).isEqualTo("Home Page");
@@ -24,7 +35,7 @@ public class TestEx1 extends InitializeKillWebSite {
     //3. Perform login
     //4 .Assert Username is logged
 
-    @Test
+
     public void assertLogin() {
         driver.findElement(By.id("user-icon")).click();
         driver.findElement(By.id("name")).sendKeys("Roman");
@@ -39,7 +50,7 @@ public class TestEx1 extends InitializeKillWebSite {
     }
 
     //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
-    @Test
+
     public void assertHeader() {
         String sideMenuPath = "[class='uui-navigation nav navbar-nav m-l8']>li";
         List<WebElement> header = driver.findElements(By.cssSelector(sideMenuPath));
@@ -61,7 +72,7 @@ public class TestEx1 extends InitializeKillWebSite {
 
 
     //6. Assert that there are 4 images on the Index Page, and they are displayed
-    @Test
+
     public void assertImages() {
         List<WebElement> listOfTheImages = driver.findElements(By.className("benefit-icon"));
         int numberOfImages = listOfTheImages.size();
@@ -81,7 +92,7 @@ public class TestEx1 extends InitializeKillWebSite {
     }
 
     //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
-    @Test
+
     public void assertTextUnderImage() {
         List<String> expectedText = new ArrayList<>();
         expectedText.add("To include good practices\n"
@@ -108,7 +119,7 @@ public class TestEx1 extends InitializeKillWebSite {
     //8. Assert that there is the iframe with Frame Button exist
     //9. Switch to the iframe and check that there is Frame Button in the iframe
     //10. Switch to original window back
-    @Test
+
     public void assertIframe() {
         driver.switchTo().frame("frame");
         WebElement frameButton = driver.findElement(By.id("frame-button"));
@@ -119,7 +130,7 @@ public class TestEx1 extends InitializeKillWebSite {
     }
 
     //11. Assert that there are 5 items in theLeft Section are displayed, and they have proper text
-    @Test
+
     public void assertSideMenu() {
         List<String> expectedMenu = new ArrayList<>();
         expectedMenu.add("Home");
