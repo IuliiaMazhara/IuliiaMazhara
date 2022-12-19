@@ -2,7 +2,7 @@ package com.epam.tc.hw3.scripts;
 
 
 import com.epam.tc.hw3.BaseTest;
-import com.epam.tc.hw3.pages.DropDownOfColorsOnDifferentElementPage;
+import com.epam.tc.hw3.pages.components.DropDownComponent;
 import com.epam.tc.hw3.pages.PageObjectDifferentElements;
 import com.epam.tc.hw3.pages.PageObjectHome;
 import com.epam.tc.hw3.pages.PageObjectLoginPage;
@@ -13,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -95,8 +96,14 @@ public class TestEx2 extends BaseTest {
     //8. Select in dropdown, Element is selected
     @Test(priority = 6)
     public void assertDropDown() {
-        DropDownOfColorsOnDifferentElementPage dropDown = new DropDownOfColorsOnDifferentElementPage(webDriver);
-        dropDown.assertSelectedDropDownItem("Yellow");
+        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
+        pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
+            Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
+            dropDownColors.selectByVisibleText("Yellow");
+            String selectedOption = dropDownColors.getFirstSelectedOption().getText();
+            SoftAssertions softDropDown = new SoftAssertions();
+            softDropDown.assertThat(selectedOption).isEqualTo("Yellow");
+            softDropDown.assertAll();
     }
 
     //9. Assert that for each checkbox there is an individual log row

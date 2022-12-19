@@ -81,20 +81,25 @@ public class TestEx1 extends BaseTest {
     @Test
     public void assertTextUnderImage() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        int listOfTheTextSize = pageObjectHome.getListOfTheText().size();
-        SoftAssertions softImagesText = new SoftAssertions();
-        softImagesText.assertThat(listOfTheTextSize).isEqualTo(4);
-        softImagesText.assertThat(pageObjectHome.getPractiseText().getText()).isEqualTo("To include good practices\n"
+        List<String> expectedText = new ArrayList<>();
+        expectedText.add("To include good practices\n"
                 + "and ideas from successful\n"
                 + "EPAM project");
-        softImagesText.assertThat(pageObjectHome.getCustomText().getText()).isEqualTo("To be flexible and\n"
+        expectedText.add("To be flexible and\n"
                 + "customizable");
-        softImagesText.assertThat(pageObjectHome.getMultiText().getText()).isEqualTo("To be multiplatform");
-        softImagesText.assertThat(pageObjectHome.getBaseText().getText()).isEqualTo("Already have good base\n"
-                       + "(about 20 internal and\n"
-                       + "some external projects),\n"
-                       + "wish to get more…");
-        softImagesText.assertAll();
+        expectedText.add("To be multiplatform");
+        expectedText.add("Already have good base\n"
+                + "(about 20 internal and\n"
+                + "some external projects),\n"
+                + "wish to get more…");
+        List<String> actualText = new ArrayList<>();
+        for (WebElement i : pageObjectHome.getListOfTheText()) {
+            actualText.add(i.getText());
+        }
+        SoftAssertions softText = new SoftAssertions();
+        softText.assertThat(actualText).isEqualTo(expectedText);
+        softText.assertThat(pageObjectHome.getListOfTheText().size()).isEqualTo(4);
+        softText.assertAll();
     }
 
     //8. Assert that there is the iframe with Frame Button exist
@@ -121,11 +126,12 @@ public class TestEx1 extends BaseTest {
         expectedMenu.add("Elements packs");
         List<String> actualMenu = new ArrayList<>();
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        for (WebElement i : pageObjectHome.getSideMenuItems()) {
+        int sideMenuSize = pageObjectHome.getSideMenuComponent().sideMenuSize();
+        for (WebElement i : pageObjectHome.getSideMenuComponent().getSideMenuItems()) {
             actualMenu.add(i.getText());
         }
         SoftAssertions softLeftMenu = new SoftAssertions();
-        softLeftMenu.assertThat(actualMenu.size()).isEqualTo(5);
+        softLeftMenu.assertThat(sideMenuSize).isEqualTo(5);
         softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
     }
 

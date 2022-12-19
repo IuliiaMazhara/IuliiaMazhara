@@ -1,6 +1,8 @@
 package com.epam.tc.hw3.pages;
 
 
+import com.epam.tc.hw3.pages.components.DropDownComponent;
+import com.epam.tc.hw3.pages.components.HeaderMenuComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class PageObjectDifferentElements {
+
+    private final DropDownComponent dropDownComponent;
 
     @FindBy(xpath = "//label[text()[contains(., ' Water')]]/*[@type='checkbox']")
     private WebElement waterCheckBox;
@@ -32,7 +36,10 @@ public class PageObjectDifferentElements {
     private WebElement yellowCheckedLog;
 
     public PageObjectDifferentElements(WebDriver driver) {
+
         PageFactory.initElements(driver, this);
+        dropDownComponent = new DropDownComponent();
+        PageFactory.initElements(driver, dropDownComponent);
     }
 
     public WebElement getWaterCheckBox() {
@@ -75,4 +82,7 @@ public class PageObjectDifferentElements {
         radioSelen.click();
     }
 
+    public DropDownComponent getDropDownComponent() {
+        return dropDownComponent;
+    }
 }
