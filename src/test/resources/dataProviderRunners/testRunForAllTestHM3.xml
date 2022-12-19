@@ -2,27 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SuiteTestHM3">
     <test name="ServiceMenu">
-        <parameter name="menuItem" value="SUPPORT"/>
-        <parameter name="pageTitle" value="Support"/>
-        <parameter name="menuItem" value="DATES"/>
-        <parameter name="pageTitle" value="Dates"/>
-        <parameter name="menuItem" value="SEARCH"/>
-        <parameter name="pageTitle" value="Simple Table"/>
-        <parameter name="menuItem" value="COMPLEX TABLE"/>
-        <parameter name="pageTitle" value="Complex Table"/>
-        <parameter name="menuItem" value="SIMPLE TABLE"/>
-        <parameter name="pageTitle" value="Simple Table"/>
-        <parameter name="menuItem" value="USER TABLE"/>
-        <parameter name="pageTitle" value="User Table"/>
-        <parameter name="menuItem" value="TABLE WITH PAGES"/>
-        <parameter name="pageTitle" value="Table with pages"/>
-        <parameter name="menuItem" value="DIFFERENT ELEMENTS"/>
-        <parameter name="pageTitle" value="Different Elements"/>
-        <parameter name="menuItem" value="PERFORMANCE"/>
-        <parameter name="pageTitle" value="Performance page"/>
         <classes>
             <class name= "com.epam.tc.hw3.scripts.TestEx1"/>
             <class name= "com.epam.tc.hw3.scripts.TestEx2"/>
         </classes>
     </test>
-</suite> <!-- Suite -->
+</suite>

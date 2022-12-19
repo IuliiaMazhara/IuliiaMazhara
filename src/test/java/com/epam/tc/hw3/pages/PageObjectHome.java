@@ -17,20 +17,6 @@ import org.openqa.selenium.support.PageFactory;
 public class PageObjectHome {
 
     private final HeaderMenuComponent headerPageElements;
-    @FindBy(id = "user-icon")
-    private WebElement userIcon;
-
-    @FindBy(id = "name")
-    private WebElement name;
-
-    @FindBy(id = "password")
-    private WebElement password;
-
-    @FindBy(css = "i[class='fa fa-sign-in']")
-    private WebElement signInButton;
-
-    @FindBy(id = "user-name")
-    private WebElement namedOfLoggedUser;
 
     @FindBy(css = "[class='icons-benefit icon-practise']")
     private WebElement iconPractise;
@@ -74,15 +60,12 @@ public class PageObjectHome {
     @FindBy(xpath = "//*[@id='mCSB_1_container']/ul/li")
     private List<WebElement> sideMenuItems;
 
-
-
     public PageObjectHome(WebDriver driver) {
         PageFactory.initElements(driver, this);
         headerPageElements = new HeaderMenuComponent();
         PageFactory.initElements(driver, headerPageElements);
-
-
     }
+
     public HeaderMenuComponent getHeaderPageElements() {
         return headerPageElements;
     }
@@ -141,42 +124,6 @@ public class PageObjectHome {
 
     public WebElement getIconBase() {
         return iconBase;
-    }
-
-    public WebElement getUserIcon() {
-        return userIcon;
-    }
-
-    public WebElement getName() {
-        return name;
-    }
-
-    public WebElement getPassword() {
-        return password;
-    }
-
-    public WebElement getSignInButton() {
-        return signInButton;
-    }
-
-    public void clickSignInButton() {
-        signInButton.click();
-    }
-
-    public WebElement getNamedOfLoggedUser() {
-        return namedOfLoggedUser;
-    }
-
-    public void clickUserIcon() {
-        userIcon.click();
-    }
-
-    public void enterUserName() throws IOException {
-        name.sendKeys(getUserNameFromProperties());
-    }
-
-    public void enterPassword() throws IOException {
-        password.sendKeys(getUserPasswordFromProperties());
     }
 
     public void clickDifferentElementServiceMenuItem() {

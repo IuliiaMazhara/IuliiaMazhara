@@ -5,6 +5,7 @@ import com.epam.tc.hw3.BaseTest;
 import com.epam.tc.hw3.pages.DropDownOfColorsOnDifferentElementPage;
 import com.epam.tc.hw3.pages.PageObjectDifferentElements;
 import com.epam.tc.hw3.pages.PageObjectHome;
+import com.epam.tc.hw3.pages.PageObjectLoginPage;
 import java.io.IOException;
 import java.time.Duration;
 import org.assertj.core.api.SoftAssertions;
@@ -12,7 +13,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -33,15 +33,16 @@ public class TestEx2 extends BaseTest {
     //4. Assert Username in the left-top side of screen that user is logged in
     @Test(priority = 2)
     public void assertLogin() throws IOException {
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        pageObjectHome.clickUserIcon();
-        pageObjectHome.enterUserName();
-        pageObjectHome.enterPassword();
-        pageObjectHome.clickSignInButton();
+        PageObjectLoginPage.using(webDriver)
+                .clickUserIcon()
+                .setUsername()
+                .setPassword()
+                .clickSignInButton();
         new WebDriverWait(webDriver, Duration.ofSeconds(6))
-                .until(ExpectedConditions.visibilityOf(pageObjectHome.getNamedOfLoggedUser()));
+                .until(ExpectedConditions.visibilityOf(PageObjectLoginPage.using(webDriver).getNamedOfLoggedUser()));
+        String nameOfLoggedUser = PageObjectLoginPage.using(webDriver).getNamedOfLoggedUser().getText();
         SoftAssertions softLogin = new SoftAssertions();
-        softLogin.assertThat(pageObjectHome.getNamedOfLoggedUser().getText()).isEqualTo("ROMAN IOVLEV");
+        softLogin.assertThat(nameOfLoggedUser).isEqualTo("ROMAN IOVLEV");
         softLogin.assertAll();
     }
 

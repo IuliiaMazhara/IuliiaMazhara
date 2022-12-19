@@ -3,6 +3,7 @@ package com.epam.tc.hw3.scripts;
 
 import com.epam.tc.hw3.BaseTest;
 import com.epam.tc.hw3.pages.PageObjectHome;
+import com.epam.tc.hw3.pages.PageObjectLoginPage;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
@@ -34,15 +35,16 @@ public class TestEx1 extends BaseTest {
 
     @Test
     public void assertLogin() throws IOException {
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        pageObjectHome.clickUserIcon();
-        pageObjectHome.enterUserName();
-        pageObjectHome.enterPassword();
-        pageObjectHome.clickSignInButton();
+        PageObjectLoginPage.using(webDriver)
+                .clickUserIcon()
+                .setUsername()
+                .setPassword()
+                .clickSignInButton();
         new WebDriverWait(webDriver, Duration.ofSeconds(6))
-                .until(ExpectedConditions.visibilityOf(pageObjectHome.getNamedOfLoggedUser()));
+                .until(ExpectedConditions.visibilityOf(PageObjectLoginPage.using(webDriver).getNamedOfLoggedUser()));
+        String nameOfLoggedUser = PageObjectLoginPage.using(webDriver).getNamedOfLoggedUser().getText();
         SoftAssertions softLogin = new SoftAssertions();
-        softLogin.assertThat(pageObjectHome.getNamedOfLoggedUser().getText()).isEqualTo("ROMAN IOVLEV");
+        softLogin.assertThat(nameOfLoggedUser).isEqualTo("ROMAN IOVLEV");
         softLogin.assertAll();
     }
 
@@ -127,8 +129,7 @@ public class TestEx1 extends BaseTest {
         softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
     }
 
-    @Test
-    @Parameters({"menuItem", "pageTitle"})
+    @Test(dataProvider = "data-provider-for-title")
     public void parameterTest(String menuItem, String pageTitle) {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         pageObjectHome.getHeaderPageElements().clickOnServiceItem();
@@ -139,6 +140,21 @@ public class TestEx1 extends BaseTest {
         SoftAssertions softTitle = new SoftAssertions();
         softTitle.assertThat(webDriver.getTitle()).isEqualTo(pageTitle);
         softTitle.assertAll();
+    }
+
+    @DataProvider(name = "data-provider-for-title")
+    public Object[][] dataSetForAddition() {
+        return new Object[][]{
+            {"SUPPORT", "Support"},
+            {"DATES", "Dates"},
+            {"SEARCH", "Simple Table"},
+            {"COMPLEX TABLE", "Complex Table"},
+            {"SIMPLE TABLE", "Simple Table"},
+            {"USER TABLE", "User Table"},
+            {"TABLE WITH PAGES", "Table with pages"},
+            {"DIFFERENT ELEMENTS", "Different Elements"},
+            {"PERFORMANCE", "Performance page"},
+        };
     }
 
 }
