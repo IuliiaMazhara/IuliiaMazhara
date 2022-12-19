@@ -10,16 +10,64 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <testng>7.6.1</testng>
-        <calc>1.0</calc>
+        <selenium-java>4.6.0</selenium-java>
+        <webdrivermanager>5.3.1</webdrivermanager>
+        <cucumber-java>7.8.1</cucumber-java>
+        <cucumber-java8>1.2.5</cucumber-java8>
+        <cucumber-core>7.8.1</cucumber-core>
+        <selenium-chrome-driver>4.6.0</selenium-chrome-driver>
+        <webdrivermanager>5.3.1</webdrivermanager>
         <assertj-core>3.23.1</assertj-core>
         <maven-compiler-plugin>3.10.1</maven-compiler-plugin>
         <maven-surefire-plugin>3.0.0-M7</maven-surefire-plugin>
+        <calc>1.0</calc>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber-java}</version>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java8</artifactId>
+            <version>${cucumber-java8}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>${cucumber-core}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium-chrome-driver}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -29,13 +77,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/calculator/calculator-1.0.jar</systemPath>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj-core}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -43,17 +84,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin}</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin}</version>
-                <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${project.basedir}/src/test/resources/${suite.xml.file}</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -82,24 +120,30 @@
     </build>
     <profiles>
         <profile>
-            <id>AdditionSubtraction</id>
+            <id>HM2</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                 <suite.xml.file>suiteAddSubtractionTest.xml</suite.xml.file>
-                    </properties>
-        </profile>
-        <profile>
-            <id>MultiplicationDivision</id>
-            <properties>
-                <suite.xml.file>suiteMultipleDivideTest.xml</suite.xml.file>
+                <suite.xml.file>testRunForAllTestHM2.xml</suite.xml.file>
             </properties>
         </profile>
         <profile>
-            <id>AllTest</id>
+            <id>AllTestHM1</id>
             <properties>
-                <suite.xml.file>suiteToRunAllTest.xml</suite.xml.file>
+                <suite.xml.file>testRunForAllTestHM1.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>SubAdd</id>
+            <properties>
+                <suite.xml.file>suiteAddSubtractionTest.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>DivMultiple</id>
+            <properties>
+                <suite.xml.file>suiteMultipleDivideTest.xml</suite.xml.file>
             </properties>
         </profile>
     </profiles>
