@@ -82,28 +82,26 @@ public class TestEx1 extends InitializeKillWebSite {
     //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
     @Test
     public void assertTextUnderImage() {
-        String practicesPath = ".//*[@class='icons-benefit icon-practise']/..//../span[@class = 'benefit-txt']";
-        String customPath = ".//*[@class='icons-benefit icon-custom']/..//../span[@class = 'benefit-txt']";
-        String multiPath = ".//*[@class='icons-benefit icon-multi']/..//../span[@class = 'benefit-txt']";
-        String basePath = ".//*[@class='icons-benefit icon-base']/..//../span[@class = 'benefit-txt']";
-        WebElement practiseText = driver.findElement(new By.ByXPath(practicesPath));
-        WebElement customText = driver.findElement(new By.ByXPath(customPath));
-        WebElement multiText = driver.findElement(new By.ByXPath(multiPath));
-        WebElement baseText = driver.findElement(new By.ByXPath(basePath));
-        List<WebElement> listOfTheText = driver.findElements(By.className("benefit-txt"));
-        SoftAssertions softImagesText = new SoftAssertions();
-        softImagesText.assertThat(listOfTheText.size()).isEqualTo(4);
-        softImagesText.assertThat(practiseText.getText()).isEqualTo("To include good practices\n"
+        List<String> expectedText = new ArrayList<>();
+        expectedText.add("To include good practices\n"
                 + "and ideas from successful\n"
                 + "EPAM project");
-        softImagesText.assertThat(customText.getText()).isEqualTo("To be flexible and\n"
+        expectedText.add("To be flexible and\n"
                 + "customizable");
-        softImagesText.assertThat(multiText.getText()).isEqualTo("To be multiplatform");
-        softImagesText.assertThat(baseText.getText()).isEqualTo("Already have good base\n"
-                       + "(about 20 internal and\n"
-                       + "some external projects),\n"
-                       + "wish to get more…");
-        softImagesText.assertAll();
+        expectedText.add("To be multiplatform");
+        expectedText.add("Already have good base\n"
+                + "(about 20 internal and\n"
+                + "some external projects),\n"
+                + "wish to get more…");
+        List<String> actualText = new ArrayList<>();
+        List<WebElement> listOfTheText = driver.findElements(By.className("benefit-txt"));
+        for (WebElement i : listOfTheText) {
+            actualText.add(i.getText());
+        }
+        SoftAssertions softText = new SoftAssertions();
+        softText.assertThat(actualText).isEqualTo(expectedText);
+        softText.assertThat(listOfTheText.size()).isEqualTo(4);
+        softText.assertAll();
     }
 
     //8. Assert that there is the iframe with Frame Button exist
@@ -137,6 +135,7 @@ public class TestEx1 extends InitializeKillWebSite {
         SoftAssertions softLeftMenu = new SoftAssertions();
         softLeftMenu.assertThat(actualMenu.size()).isEqualTo(5);
         softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
+        softLeftMenu.assertAll();
     }
 
 }
