@@ -1,10 +1,6 @@
 package com.epam.tc.hw2.scripts.ex1;
 
-
-
-
 import com.epam.tc.hw2.InitializeKillWebSite;
-import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +9,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 
 public class TestEx1 extends InitializeKillWebSite {
 
-    //2. Assert Browser title
     @Test
+    public void verifyMainPage() {
+        assertTitle();
+        assertLogin();
+        assertHeader();
+        assertImages();
+        assertTextUnderImage();
+        assertIframe();
+        assertSideMenu();
+    }
+
+    //2. Assert Browser title
+
     public void assertTitle() {
         SoftAssertions softTitle = new SoftAssertions();
         softTitle.assertThat(driver.getTitle()).isEqualTo("Home Page");
@@ -30,12 +35,12 @@ public class TestEx1 extends InitializeKillWebSite {
     //3. Perform login
     //4 .Assert Username is logged
 
-    @Test
-    public void assertLogin() throws IOException {
+
+    public void assertLogin() {
         driver.findElement(By.id("user-icon")).click();
         driver.findElement(By.id("name")).sendKeys("Roman");
         driver.findElement(By.id("password")).sendKeys("Jdi1234");
-        driver.findElement(By.cssSelector(("i[class='fa fa-sign-in']"))).click();
+        driver.findElement(By.id(("login-button"))).click();
         By userName = By.id("user-name");
         WebElement userNameElement = driver.findElement(userName);
         new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOf(userNameElement));
@@ -45,9 +50,9 @@ public class TestEx1 extends InitializeKillWebSite {
     }
 
     //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
-    @Test
+
     public void assertHeader() {
-        String sideMenuPath = "[class='uui-navigation nav navbar-nav m-l8']>li";
+        String sideMenuPath = "ul.uui-navigation.nav.navbar-nav.m-l8 > li";
         List<WebElement> header = driver.findElements(By.cssSelector(sideMenuPath));
         int headerMenuItemsSize = header.size();
         SoftAssertions softHeaderSize = new SoftAssertions();
@@ -67,7 +72,7 @@ public class TestEx1 extends InitializeKillWebSite {
 
 
     //6. Assert that there are 4 images on the Index Page, and they are displayed
-    @Test
+
     public void assertImages() {
         List<WebElement> listOfTheImages = driver.findElements(By.className("benefit-icon"));
         int numberOfImages = listOfTheImages.size();
@@ -87,7 +92,7 @@ public class TestEx1 extends InitializeKillWebSite {
     }
 
     //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
-    @Test
+
     public void assertTextUnderImage() {
         List<String> expectedText = new ArrayList<>();
         expectedText.add("To include good practices\n"
@@ -114,7 +119,7 @@ public class TestEx1 extends InitializeKillWebSite {
     //8. Assert that there is the iframe with Frame Button exist
     //9. Switch to the iframe and check that there is Frame Button in the iframe
     //10. Switch to original window back
-    @Test
+
     public void assertIframe() {
         driver.switchTo().frame("frame");
         WebElement frameButton = driver.findElement(By.id("frame-button"));
@@ -125,7 +130,7 @@ public class TestEx1 extends InitializeKillWebSite {
     }
 
     //11. Assert that there are 5 items in theLeft Section are displayed, and they have proper text
-    @Test
+
     public void assertSideMenu() {
         List<String> expectedMenu = new ArrayList<>();
         expectedMenu.add("Home");
@@ -144,11 +149,5 @@ public class TestEx1 extends InitializeKillWebSite {
         softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
         softLeftMenu.assertAll();
     }
-
-    @DataProvider(name = "dataProviderToTestSideMenu")
-    public Object[][] dataSetForAddition() {
-        return new Object[][]{{"Contact form", "Contact Form"}, {"Metals & Colors", "Metal and Colors"}};
-    }
-
 
 }

@@ -12,11 +12,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 
-
 public class TestEx2 extends InitializeKillWebSite {
 
+    @Test
+    public void verifyDifferentElementsPage() {
+
+        assertTitle();
+        assertLogin();
+        navigateToDifferentElementsPage();
+        assertCheckBox();
+        assertRadioBox();
+        assertDropDown();
+        assertLogger();
+    }
+
     //2. Assert Browser title
-    @Test(priority = 1)
+
     public void assertTitle() {
         SoftAssertions softTitle = new SoftAssertions();
         softTitle.assertThat(driver.getTitle()).isEqualTo("Home Page");
@@ -25,12 +36,12 @@ public class TestEx2 extends InitializeKillWebSite {
 
     //3. Perform login
     //4. Assert Username in the left-top side of screen that user is logged in
-    @Test(priority = 2)
+
     public void assertLogin() {
         driver.findElement(By.id("user-icon")).click();
         driver.findElement(By.id("name")).sendKeys("Roman");
         driver.findElement(By.id("password")).sendKeys("Jdi1234");
-        driver.findElement(By.cssSelector(("i[class='fa fa-sign-in']"))).click();
+        driver.findElement(By.id(("login-button"))).click();;
         By userName = By.id("user-name");
         WebElement userNameElement = driver.findElement(userName);
         new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOf(userNameElement));
@@ -40,21 +51,21 @@ public class TestEx2 extends InitializeKillWebSite {
     }
 
     //5. Open through the header menu Service -> Different Elements Page
-    @Test(priority = 3)
+
     public void navigateToDifferentElementsPage() {
         WebElement serviceElement = driver.findElement(By.partialLinkText("SERVICE"));
         serviceElement.click();
         WebElement menuItemDifferentElements = driver.findElement(By.partialLinkText("DIFFERENT ELEMENTS"));
         menuItemDifferentElements.click();
         new WebDriverWait(driver, Duration.ofSeconds(3))
-         .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
+                .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
         SoftAssertions softDifferentElements = new SoftAssertions();
         softDifferentElements.assertThat(driver.getTitle()).isEqualTo("Different Elements");
         softDifferentElements.assertAll();
     }
 
     //6. Select checkboxes, Elements are checked
-    @Test(priority = 4)
+
     public void assertCheckBox() {
         By waterCheckBox = new By.ByXPath("//label[text()[contains(., ' Water')]]/*[@type='checkbox']");
         By windCheckBox = new By.ByXPath("//label[text()[contains(., ' Wind')]]/*[@type='checkbox']");
@@ -69,7 +80,7 @@ public class TestEx2 extends InitializeKillWebSite {
     }
 
     //7. Select radio, Element is checked
-    @Test(priority = 5)
+
     public void assertRadioBox() {
         By radioSelen = new By.ByXPath("//label[text()[contains(., ' Selen')]]/*[@type='radio']");
         WebElement radioSelenElement = driver.findElement(radioSelen);
@@ -80,7 +91,7 @@ public class TestEx2 extends InitializeKillWebSite {
     }
 
     //8. Select in dropdown, Element is selected
-    @Test(priority = 6)
+
     public void assertDropDown() {
         By dropDownColor = new By.ByXPath(".//*[@class='colors']//*[@class='uui-form-element']");
         driver.findElement(dropDownColor).click();
@@ -96,7 +107,6 @@ public class TestEx2 extends InitializeKillWebSite {
     //9. Assert that for radio button there is a log row and value is corresponded to the status of radio button
     //9. Assert that for dropdown there is a log row and value is corresponded to the selected value.
 
-    @Test(priority = 7)
     public void assertLogger() {
         String waterLogPath = "//*[contains(text(),'Water: condition changed to true')]";
         String windLogPath = "//*[contains(text(),'Wind: condition changed to true')]";
