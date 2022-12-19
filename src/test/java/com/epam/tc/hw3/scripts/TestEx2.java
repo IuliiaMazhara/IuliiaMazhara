@@ -87,22 +87,27 @@ public class TestEx2 extends BaseTest {
     }
 
     @DataProvider(name = "data-provider-for-radio-button")
-    public Object[][] dataSetForAddition() {
+    public Object[][] dataSetForMetals() {
         return new Object[][]{{"Gold"}, {"Silver"}, {"Bronze"}, {"Selen"}};
     }
 
 
     //8. Select in dropdown, Element is selected
-    @Test(priority = 6)
-    public void assertDropDown() {
+    @Test(priority = 6, dataProvider = "data-provider-for-dropdown")
+    public void assertDropDown(String color) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
         Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
-        dropDownColors.selectByVisibleText("Yellow");
+        dropDownColors.selectByVisibleText(color);
         String selectedOption = dropDownColors.getFirstSelectedOption().getText();
         SoftAssertions softDropDown = new SoftAssertions();
-        softDropDown.assertThat(selectedOption).isEqualTo("Yellow");
+        softDropDown.assertThat(selectedOption).isEqualTo(color);
         softDropDown.assertAll();
+    }
+
+    @DataProvider(name = "data-provider-for-dropdown")
+    public Object[][] dataSetForColors() {
+        return new Object[][]{{"Yellow"}, {"Red"}, {"Green"}, {"Blue"}};
     }
 
     //9. Assert that for each checkbox there is an individual log row
