@@ -11,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 
 
 
-
 public class PageObjectLoginPage {
 
     @FindBy(id = "user-icon")
