@@ -18,7 +18,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
-
 public class TestEx2 extends BaseTest {
 
     //2. Assert Browser title
@@ -46,21 +45,49 @@ public class TestEx2 extends BaseTest {
         softLogin.assertAll();
     }
 
+    @Test(priority = 3, dataProvider = "data-provider-for-title")
+    public void parameterTest(String menuItem, String pageTitle) throws IOException {
+        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
+        pageObjectHome.getHeaderPageElements().clickOnServiceItem();
+        By menuItems = By.partialLinkText(menuItem);
+        webDriver.findElement(menuItems).click();
+        new WebDriverWait(webDriver, Duration.ofSeconds(3))
+                .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
+        SoftAssertions softTitle = new SoftAssertions();
+        softTitle.assertThat(webDriver.getTitle()).isEqualTo(pageTitle);
+        softTitle.assertAll();
+    }
+
+    @DataProvider(name = "data-provider-for-title")
+    public Object[][] dataSetForAddition() {
+        return new Object[][]{
+                {"SUPPORT", "Support"},
+                {"DATES", "Dates"},
+                {"SEARCH", "Simple Table"},
+                {"COMPLEX TABLE", "Complex Table"},
+                {"SIMPLE TABLE", "Simple Table"},
+                {"USER TABLE", "User Table"},
+                {"TABLE WITH PAGES", "Table with pages"},
+                {"DIFFERENT ELEMENTS", "Different Elements"},
+                {"PERFORMANCE", "Performance page"},
+        };
+    }
+
     //5. Open through the header menu Service -> Different Elements Page
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void navigateToDifferentElementsPage() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         pageObjectHome.getHeaderPageElements().clickOnServiceItem();
         pageObjectHome.clickDifferentElementServiceMenuItem();
         new WebDriverWait(webDriver, Duration.ofSeconds(3))
-         .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
+                .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
         SoftAssertions softDifferentElements = new SoftAssertions();
         softDifferentElements.assertThat(webDriver.getTitle()).isEqualTo("Different Elements");
         softDifferentElements.assertAll();
     }
 
     //6. Select checkboxes, Elements are checked
-    @Test(priority = 4)
+    @Test(priority = 5)
     public void assertCheckBox() {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.chooseWaterCheckBox();
@@ -74,7 +101,7 @@ public class TestEx2 extends BaseTest {
     }
 
     //7. Select radio, Element is checked
-    @Test(priority = 5, dataProvider = "data-provider-for-radio-button")
+    @Test(priority = 6, dataProvider = "data-provider-for-radio-button")
     public void assertRadioBox(String element) {
         String el = element;
         By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + el + "')]]/*[@type='radio']");
@@ -93,7 +120,7 @@ public class TestEx2 extends BaseTest {
 
 
     //8. Select in dropdown, Element is selected
-    @Test(priority = 6, dataProvider = "data-provider-for-dropdown")
+    @Test(priority = 7, dataProvider = "data-provider-for-dropdown")
     public void assertDropDown(String color) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
