@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SideMenuComponent {
 
-    @FindBy(css = "ul[class='sidebar-menu left']>li")
+    @FindBy(css = ".sidebar-menu > li")
     private List<WebElement> sideMenuItems;
 
     public  int sideMenuSize() {

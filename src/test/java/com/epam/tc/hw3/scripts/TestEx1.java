@@ -21,19 +21,28 @@ import org.testng.annotations.Test;
 
 public class TestEx1 extends BaseTest {
 
-    //2. Assert Browser title
     @Test
+    public void verifyMainPage() throws IOException {
+        assertTitle();
+        assertLogin();
+        assertHeaderMenu();
+        assertImages();
+        assertTextUnderImage();
+        assertIframe();
+        assertSideMenu();
+    }
+
+    //2. Assert Browser title
+
     public void assertTitle() {
         SoftAssertions softTitle = new SoftAssertions();
         softTitle.assertThat(webDriver.getTitle()).isEqualTo("Home Page");
         softTitle.assertAll();
     }
 
-
     //3. Perform login
     //4 .Assert Username is logged
 
-    @Test
     public void assertLogin() throws IOException {
         PageObjectLoginPage.using(webDriver)
                 .clickUserIcon()
@@ -49,7 +58,7 @@ public class TestEx1 extends BaseTest {
     }
 
     //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
-    @Test
+
     public void assertHeaderMenu() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         int headerMenuSize = pageObjectHome.getHeaderPageElements().headerMenuSize();
@@ -62,9 +71,8 @@ public class TestEx1 extends BaseTest {
         softHeader.assertAll();
     }
 
-
     //6. Assert that there are 4 images on the Index Page, and they are displayed
-    @Test
+
     public void assertImages() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         int imageContainerSize = pageObjectHome.getListOfTheImages().size();
@@ -78,7 +86,7 @@ public class TestEx1 extends BaseTest {
     }
 
     //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
-    @Test
+
     public void assertTextUnderImage() {
         List<String> expectedText = new ArrayList<>();
         expectedText.add("To include good practices\n"
@@ -105,7 +113,7 @@ public class TestEx1 extends BaseTest {
     //8. Assert that there is the iframe with Frame Button exist
     //9. Switch to the iframe and check that there is Frame Button in the iframe
     //10. Switch to original window back
-    @Test
+
     public void assertIframe() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         webDriver.switchTo().frame("frame");
@@ -116,7 +124,7 @@ public class TestEx1 extends BaseTest {
     }
 
     //11. Assert that there are 5 items in theLeft Section are displayed, and they have proper text
-    @Test
+
     public void assertSideMenu() {
         List<String> expectedMenu = new ArrayList<>();
         expectedMenu.add("Home");
@@ -133,34 +141,6 @@ public class TestEx1 extends BaseTest {
         SoftAssertions softLeftMenu = new SoftAssertions();
         softLeftMenu.assertThat(sideMenuSize).isEqualTo(5);
         softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
-    }
-
-    @Test(dataProvider = "data-provider-for-title")
-    public void parameterTest(String menuItem, String pageTitle) {
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        pageObjectHome.getHeaderPageElements().clickOnServiceItem();
-        By menuItems = By.partialLinkText(menuItem);
-        webDriver.findElement(menuItems).click();
-        new WebDriverWait(webDriver, Duration.ofSeconds(3))
-                .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
-        SoftAssertions softTitle = new SoftAssertions();
-        softTitle.assertThat(webDriver.getTitle()).isEqualTo(pageTitle);
-        softTitle.assertAll();
-    }
-
-    @DataProvider(name = "data-provider-for-title")
-    public Object[][] dataSetForAddition() {
-        return new Object[][]{
-            {"SUPPORT", "Support"},
-            {"DATES", "Dates"},
-            {"SEARCH", "Simple Table"},
-            {"COMPLEX TABLE", "Complex Table"},
-            {"SIMPLE TABLE", "Simple Table"},
-            {"USER TABLE", "User Table"},
-            {"TABLE WITH PAGES", "Table with pages"},
-            {"DIFFERENT ELEMENTS", "Different Elements"},
-            {"PERFORMANCE", "Performance page"},
-        };
     }
 
 }
