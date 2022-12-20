@@ -21,6 +21,9 @@
         <maven-compiler-plugin>3.10.1</maven-compiler-plugin>
         <maven-surefire-plugin>3.0.0-M7</maven-surefire-plugin>
         <calc>1.0</calc>
+        <allure-testng>2.20.1</allure-testng>
+        <allure-maven>2.12.0</allure-maven>
+        <aspectj.version>1.9.5</aspectj.version>
     </properties>
     <dependencies>
         <dependency>
@@ -28,6 +31,12 @@
             <artifactId>testng</artifactId>
             <version>${testng}</version>
             <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
@@ -71,6 +80,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.calc</groupId>
             <artifactId>calc</artifactId>
             <version>${calc}</version>
@@ -92,6 +107,27 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin}</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${project.basedir}/src/test/resources/runners/${suite.xml.file}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -146,10 +182,19 @@
         <profile>
             <id>HM3</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml.file>testRunForAllTestHM3.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>HM4</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM4.xml</suite.xml.file>
             </properties>
         </profile>
     </profiles>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SuiteTestHM4">
+    <test name="Home Work 4">
+        <classes>
+            <class name= "com.epam.tc.hw4.TestEx1"/>
+            <class name= "com.epam.tc.hw4.TestEx2"/>
+        </classes>
+    </test>
+</suite>
