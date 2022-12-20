@@ -172,15 +172,15 @@ public class TestEx1 extends BaseTest {
     @DataProvider(name = "data-provider-for-title")
     public Object[][] dataSetForAddition() {
         return new Object[][]{
-            {"SUPPORT", "Support"},
-            {"DATES", "Dates"},
-            {"SEARCH", "Simple Table"},
-            {"COMPLEX TABLE", "Complex Table"},
-            {"SIMPLE TABLE", "Simple Table"},
-            {"USER TABLE", "User Table"},
-            {"TABLE WITH PAGES", "Table with pages"},
-            {"DIFFERENT ELEMENTS", "Different Elements"},
-            {"PERFORMANCE", "Performance page"},
+                {"SUPPORT", "Support"},
+                {"DATES", "Dates"},
+                {"SEARCH", "Simple Table"},
+                {"COMPLEX TABLE", "Complex Table"},
+                {"SIMPLE TABLE", "Simple Table"},
+                {"USER TABLE", "User Table"},
+                {"TABLE WITH PAGES", "Table with pages"},
+                {"DIFFERENT ELEMENTS", "Different Elements"},
+                {"PERFORMANCE", "Performance page"},
         };
     }
 
