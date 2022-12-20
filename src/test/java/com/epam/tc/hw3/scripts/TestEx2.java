@@ -108,16 +108,8 @@ public class TestEx2 extends BaseTest {
     //9. Assert that for radio button there is a log row and value is corresponded to the status of radio button
     @Test(priority = 6, dataProvider = "data-provider-for-radio-button")
     public void assertRadioBox(String element) {
-        By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + element + "')]]/*[@type='radio']");
-        WebElement radioElement = webDriver.findElement(radioMetalPath);
-        radioElement.click();
-        Boolean isMetalSelected = radioElement.isSelected();
-        By loggerPath = new By.ByXPath("//*[contains(text(),'metal: value changed to  " + element + "')]");
-        WebElement radioLoggerElement = webDriver.findElement(loggerPath);
-        SoftAssertions softRadio = new SoftAssertions();
-        softRadio.assertThat(isMetalSelected).isTrue();
-        softRadio.assertThat(radioLoggerElement.isDisplayed());
-        softRadio.assertAll();
+        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
+        pageObjectDifferentElements.assertRadioBoxLog(element);
     }
 
     @DataProvider(name = "data-provider-for-radio-button")
@@ -131,16 +123,7 @@ public class TestEx2 extends BaseTest {
     @Test(priority = 7, dataProvider = "data-provider-for-dropdown")
     public void assertDropDown(String color) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
-        pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
-        Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
-        dropDownColors.selectByVisibleText(color);
-        String selectedOption = dropDownColors.getFirstSelectedOption().getText();
-        By loggerPath = new By.ByXPath("//*[contains(text(),'Colors: value changed to " + color + "')]");
-        WebElement colorLoggerElement = webDriver.findElement(loggerPath);
-        SoftAssertions softDropDown = new SoftAssertions();
-        softDropDown.assertThat(selectedOption).isEqualTo(color);
-        softDropDown.assertThat(colorLoggerElement.isDisplayed());
-        softDropDown.assertAll();
+        pageObjectDifferentElements.assertDropDownLog(color);
     }
 
     @DataProvider(name = "data-provider-for-dropdown")

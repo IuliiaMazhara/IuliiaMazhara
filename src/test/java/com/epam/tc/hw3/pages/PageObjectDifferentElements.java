@@ -1,13 +1,15 @@
 package com.epam.tc.hw3.pages;
 
+import static com.epam.tc.hw3.BaseTest.webDriver;
 
 import com.epam.tc.hw3.pages.components.DropDownComponent;
-import com.epam.tc.hw3.pages.components.HeaderMenuComponent;
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 
 
@@ -85,6 +87,33 @@ public class PageObjectDifferentElements {
 
     public DropDownComponent getDropDownComponent() {
         return dropDownComponent;
+    }
+
+    public void assertRadioBoxLog(String element) {
+        By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + element + "')]]/*[@type='radio']");
+        WebElement radioElement = webDriver.findElement(radioMetalPath);
+        radioElement.click();
+        Boolean isMetalSelected = radioElement.isSelected();
+        By loggerPath = new By.ByXPath("//*[contains(text(),'metal: value changed to  " + element + "')]");
+        WebElement radioLoggerElement = webDriver.findElement(loggerPath);
+        SoftAssertions softRadio = new SoftAssertions();
+        softRadio.assertThat(isMetalSelected).isTrue();
+        softRadio.assertThat(radioLoggerElement.isDisplayed());
+        softRadio.assertAll();
+    }
+
+    public void assertDropDownLog(String color) {
+        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
+        pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
+        Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
+        dropDownColors.selectByVisibleText(color);
+        String selectedOption = dropDownColors.getFirstSelectedOption().getText();
+        By loggerPath = new By.ByXPath("//*[contains(text(),'Colors: value changed to " + color + "')]");
+        WebElement colorLoggerElement = webDriver.findElement(loggerPath);
+        SoftAssertions softDropDown = new SoftAssertions();
+        softDropDown.assertThat(selectedOption).isEqualTo(color);
+        softDropDown.assertThat(colorLoggerElement.isDisplayed());
+        softDropDown.assertAll();
     }
 
 }
