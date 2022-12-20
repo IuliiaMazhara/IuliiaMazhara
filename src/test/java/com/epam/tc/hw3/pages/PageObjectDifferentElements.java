@@ -3,6 +3,7 @@ package com.epam.tc.hw3.pages;
 
 import com.epam.tc.hw3.pages.components.DropDownComponent;
 import com.epam.tc.hw3.pages.components.HeaderMenuComponent;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -85,4 +86,5 @@ public class PageObjectDifferentElements {
     public DropDownComponent getDropDownComponent() {
         return dropDownComponent;
     }
+
 }
