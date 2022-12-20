@@ -87,6 +87,8 @@ public class TestEx2 extends BaseTest {
     }
 
     //6. Select checkboxes, Elements are checked
+    //9. Assert that for each checkbox there is an individual log row
+    //and value is corresponded to the status of checkbox
     @Test(priority = 5)
     public void assertCheckBox() {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
@@ -97,19 +99,24 @@ public class TestEx2 extends BaseTest {
         SoftAssertions softCheckBox = new SoftAssertions();
         softCheckBox.assertThat(isWaterSelected).isTrue();
         softCheckBox.assertThat(isWindSelected).isTrue();
+        softCheckBox.assertThat(pageObjectDifferentElements.getWaterCheckedLog().isDisplayed());
+        softCheckBox.assertThat(pageObjectDifferentElements.getWindCheckedLog().isDisplayed());
         softCheckBox.assertAll();
     }
 
     //7. Select radio, Element is checked
+    //9. Assert that for radio button there is a log row and value is corresponded to the status of radio button
     @Test(priority = 6, dataProvider = "data-provider-for-radio-button")
     public void assertRadioBox(String element) {
-        String el = element;
-        By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + el + "')]]/*[@type='radio']");
+        By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + element + "')]]/*[@type='radio']");
         WebElement radioElement = webDriver.findElement(radioMetalPath);
         radioElement.click();
         Boolean isMetalSelected = radioElement.isSelected();
+        By loggerPath = new By.ByXPath("//*[contains(text(),'metal: value changed to  " + element + "')]");
+        WebElement radioLoggerElement = webDriver.findElement(loggerPath);
         SoftAssertions softRadio = new SoftAssertions();
         softRadio.assertThat(isMetalSelected).isTrue();
+        softRadio.assertThat(radioLoggerElement.isDisplayed());
         softRadio.assertAll();
     }
 
@@ -120,6 +127,7 @@ public class TestEx2 extends BaseTest {
 
 
     //8. Select in dropdown, Element is selected
+    //9. Assert that for dropdown there is a log row and value is corresponded to the selected value.
     @Test(priority = 7, dataProvider = "data-provider-for-dropdown")
     public void assertDropDown(String color) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
@@ -127,29 +135,17 @@ public class TestEx2 extends BaseTest {
         Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
         dropDownColors.selectByVisibleText(color);
         String selectedOption = dropDownColors.getFirstSelectedOption().getText();
+        By loggerPath = new By.ByXPath("//*[contains(text(),'Colors: value changed to " + color + "')]");
+        WebElement colorLoggerElement = webDriver.findElement(loggerPath);
         SoftAssertions softDropDown = new SoftAssertions();
         softDropDown.assertThat(selectedOption).isEqualTo(color);
+        softDropDown.assertThat(colorLoggerElement.isDisplayed());
         softDropDown.assertAll();
     }
 
     @DataProvider(name = "data-provider-for-dropdown")
     public Object[][] dataSetForColors() {
         return new Object[][]{{"Yellow"}, {"Red"}, {"Green"}, {"Blue"}};
-    }
-
-    //9. Assert that for each checkbox there is an individual log row
-    //and value is corresponded to the status of checkbox
-    //9. Assert that for radio button there is a log row and value is corresponded to the status of radio button
-    //9. Assert that for dropdown there is a log row and value is corresponded to the selected value.
-
-    @Test(priority = 8)
-    public void assertLogger() {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
-        SoftAssertions logger = new SoftAssertions();
-        logger.assertThat(pageObjectDifferentElements.getWaterCheckedLog().isDisplayed());
-        logger.assertThat(pageObjectDifferentElements.getWindCheckedLog().isDisplayed());
-        logger.assertThat(pageObjectDifferentElements.getSelenCheckedLog().isDisplayed());
-        logger.assertThat(pageObjectDifferentElements.getYellowCheckedLog().isDisplayed());
     }
 
 }
