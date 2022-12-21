@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
-
+@Listeners({ScreenShotListener.class})
 public class BaseTest {
     public static WebDriver webDriver;
 
