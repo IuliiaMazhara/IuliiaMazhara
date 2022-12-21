@@ -46,7 +46,7 @@ public class TestEx2 extends BaseTest {
     }
 
     @Test(priority = 3, dataProvider = "data-provider-for-title")
-    public void parameterTest(String menuItem, String pageTitle) throws IOException {
+    public void verifyTittleAfterMenuItemClicked(String menuItem, String pageTitle) throws IOException {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         pageObjectHome.getHeaderPageElements().clickOnServiceItem();
         By menuItems = By.partialLinkText(menuItem);
