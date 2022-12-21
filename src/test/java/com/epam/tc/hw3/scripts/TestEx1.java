@@ -33,7 +33,6 @@ public class TestEx1 extends BaseTest {
     }
 
     //2. Assert Browser title
-
     public void assertTitle() {
         SoftAssertions softTitle = new SoftAssertions();
         softTitle.assertThat(webDriver.getTitle()).isEqualTo("Home Page");
@@ -42,7 +41,6 @@ public class TestEx1 extends BaseTest {
 
     //3. Perform login
     //4 .Assert Username is logged
-
     public void assertLogin() throws IOException {
         PageObjectLoginPage.using(webDriver)
                 .clickUserIcon()
@@ -58,7 +56,6 @@ public class TestEx1 extends BaseTest {
     }
 
     //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
-
     public void assertHeaderMenu() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         int headerMenuSize = pageObjectHome.getHeaderPageElements().headerMenuSize();
@@ -72,7 +69,6 @@ public class TestEx1 extends BaseTest {
     }
 
     //6. Assert that there are 4 images on the Index Page, and they are displayed
-
     public void assertImages() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         int imageContainerSize = pageObjectHome.getListOfTheImages().size();
@@ -86,7 +82,6 @@ public class TestEx1 extends BaseTest {
     }
 
     //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
-
     public void assertTextUnderImage() {
         List<String> expectedText = new ArrayList<>();
         expectedText.add("To include good practices\n"
@@ -113,7 +108,6 @@ public class TestEx1 extends BaseTest {
     //8. Assert that there is the iframe with Frame Button exist
     //9. Switch to the iframe and check that there is Frame Button in the iframe
     //10. Switch to original window back
-
     public void assertIframe() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         webDriver.switchTo().frame("frame");

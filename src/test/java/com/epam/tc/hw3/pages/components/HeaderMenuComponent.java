@@ -49,4 +49,5 @@ public class HeaderMenuComponent {
     public void clickOnServiceItem() {
         serviceHeaderItem.click();
     }
+
 }

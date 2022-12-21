@@ -12,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 
-
 public class PageObjectDifferentElements {
 
     private final DropDownComponent dropDownComponent;
@@ -89,31 +88,73 @@ public class PageObjectDifferentElements {
         return dropDownComponent;
     }
 
-    public void assertRadioBoxLog(String element) {
-        By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + element + "')]]/*[@type='radio']");
-        WebElement radioElement = webDriver.findElement(radioMetalPath);
-        radioElement.click();
-        Boolean isMetalSelected = radioElement.isSelected();
-        By loggerPath = new By.ByXPath("//*[contains(text(),'metal: value changed to  " + element + "')]");
-        WebElement radioLoggerElement = webDriver.findElement(loggerPath);
+    public void clickOnElementCheckBox(String element) {
+        By checkBoxElementPath = new By.ByXPath("//label[text()[contains(., ' " + element + "')]]/*[@type='checkbox']");
+        WebElement checkBoxElement = webDriver.findElement(checkBoxElementPath);
+        checkBoxElement.click();
+    }
+
+    public void assertCheckBoxIsSelected(String element) {
+        By checkBoxElementPath = new By.ByXPath("//label[text()[contains(., ' " + element + "')]]/*[@type='checkbox']");
+        WebElement checkBoxElement = webDriver.findElement(checkBoxElementPath);
         SoftAssertions softRadio = new SoftAssertions();
-        softRadio.assertThat(isMetalSelected).isTrue();
-        softRadio.assertThat(radioLoggerElement.isDisplayed());
+        softRadio.assertThat(checkBoxElement.isSelected()).isTrue();
         softRadio.assertAll();
     }
 
-    public void assertDropDownLog(String color) {
+    public void assertCheckBoxLogger(String element) {
+        By loggerPath = new By.ByXPath("//*[contains(text(),'" + element + ": condition changed to true')]");
+        WebElement radioLoggerElement = webDriver.findElement(loggerPath);
+        SoftAssertions softRadioLog = new SoftAssertions();
+        softRadioLog.assertThat(radioLoggerElement.isDisplayed()).isTrue();
+        softRadioLog.assertAll();
+    }
+
+    public void clickOnMetalRadioButton(String metal) {
+        By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + metal + "')]]/*[@type='radio']");
+        WebElement radioElement = webDriver.findElement(radioMetalPath);
+        radioElement.click();
+    }
+
+    public void assertRadioBoxIsSelected(String metal) {
+        By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + metal + "')]]/*[@type='radio']");
+        WebElement radioElement = webDriver.findElement(radioMetalPath);
+        SoftAssertions softRadio = new SoftAssertions();
+        softRadio.assertThat(radioElement.isSelected()).isTrue();
+        softRadio.assertAll();
+    }
+
+    public void assertRadioLogger(String metal) {
+        By loggerRadioPath = new By.ByXPath("//*[contains(text(),'metal: value changed to  " + metal + "')]");
+        WebElement radioLoggerElement = webDriver.findElement(loggerRadioPath);
+        SoftAssertions softRadioLog = new SoftAssertions();
+        softRadioLog.assertThat(radioLoggerElement.isDisplayed()).isTrue();
+        softRadioLog.assertAll();
+    }
+
+    public void selectDropDown(String color) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
         Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
         dropDownColors.selectByVisibleText(color);
+    }
+
+    public void assertDropDown(String color) {
+        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
+        pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
+        Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
         String selectedOption = dropDownColors.getFirstSelectedOption().getText();
-        By loggerPath = new By.ByXPath("//*[contains(text(),'Colors: value changed to " + color + "')]");
-        WebElement colorLoggerElement = webDriver.findElement(loggerPath);
         SoftAssertions softDropDown = new SoftAssertions();
         softDropDown.assertThat(selectedOption).isEqualTo(color);
-        softDropDown.assertThat(colorLoggerElement.isDisplayed());
         softDropDown.assertAll();
+    }
+
+    public void assertDropDownLogger(String color) {
+        By loggerPath = new By.ByXPath("//*[contains(text(),'Colors: value changed to " + color + "')]");
+        WebElement colorLoggerElement = webDriver.findElement(loggerPath);
+        SoftAssertions softDropDownLog = new SoftAssertions();
+        softDropDownLog.assertThat(colorLoggerElement.isDisplayed());
+        softDropDownLog.assertAll();
     }
 
 }
