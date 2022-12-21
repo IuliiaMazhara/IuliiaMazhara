@@ -51,7 +51,6 @@ public class TestEx2 extends BaseTest {
     }
 
     //5. Open through the header menu Service -> Different Elements Page
-    @Test(priority = 4)
     public void navigateToDifferentElementsPage() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         pageObjectHome.getHeaderPageElements().clickOnServiceItem();
