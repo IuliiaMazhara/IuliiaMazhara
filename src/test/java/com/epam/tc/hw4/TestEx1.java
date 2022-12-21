@@ -1,7 +1,6 @@
 package com.epam.tc.hw4;
 
 
-import com.epam.tc.hw3.BaseTest;
 import com.epam.tc.hw3.pages.PageObjectHome;
 import com.epam.tc.hw3.pages.PageObjectLoginPage;
 import io.qameta.allure.Description;
