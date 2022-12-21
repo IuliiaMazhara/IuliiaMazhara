@@ -1,35 +1,42 @@
 package com.epam.tc.hw4;
 
 
+import com.epam.tc.hw3.BaseTest;
 import com.epam.tc.hw3.pages.PageObjectHome;
 import com.epam.tc.hw3.pages.PageObjectLoginPage;
-import com.epam.tc.hw4.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
+import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 
-
-@Feature("Functionality of home page")
-@Story("Log in, header menu, pictures, frame, side menu")
+@Feature("Check Home Page")
+@Story("Title, login, header menu, images, frame, side menu")
 public class TestEx1Failed extends BaseTest {
 
-    //2. Assert Browser title
     @Test
-    @Description("Test to assert that the Home Page is displayed")
+    @Description("Test Home Page")
+    public void verifyMainPage() throws IOException {
+        assertTitle();
+        assertLogin();
+        assertHeaderMenu();
+        assertImages();
+        assertTextUnderImage();
+        assertIframe();
+        assertSideMenu();
+    }
+
+    //2. Assert Browser title
     @Step
     public void assertTitle() {
         SoftAssertions softTitle = new SoftAssertions();
@@ -37,12 +44,8 @@ public class TestEx1Failed extends BaseTest {
         softTitle.assertAll();
     }
 
-
     //3. Perform login
     //4 .Assert Username is logged
-
-    @Test
-    @Description("Test to assert that the user is able to login")
     @Step
     public void assertLogin() throws IOException {
         PageObjectLoginPage.using(webDriver)
@@ -59,14 +62,12 @@ public class TestEx1Failed extends BaseTest {
     }
 
     //5. Assert that there are 4 items on the header section are displayed, and they have proper texts
-    @Test
-    @Description("Test to assert the header menu")
     @Step
     public void assertHeaderMenu() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         int headerMenuSize = pageObjectHome.getHeaderPageElements().headerMenuSize();
         SoftAssertions softHeader = new SoftAssertions();
-        softHeader.assertThat(headerMenuSize).isEqualTo(5);
+        softHeader.assertThat(headerMenuSize).isEqualTo(6);
         softHeader.assertThat(pageObjectHome.getHeaderPageElements().getFormHeaderItem().isDisplayed());
         softHeader.assertThat(pageObjectHome.getHeaderPageElements().getServiceHeaderItem().isDisplayed());
         softHeader.assertThat(pageObjectHome.getHeaderPageElements().getMetalsAndColorsHeaderItem().isDisplayed());
@@ -74,16 +75,13 @@ public class TestEx1Failed extends BaseTest {
         softHeader.assertAll();
     }
 
-
     //6. Assert that there are 4 images on the Index Page, and they are displayed
-    @Test
-    @Description("Test to assert that there are 4 images on the home page")
     @Step
     public void assertImages() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         int imageContainerSize = pageObjectHome.getListOfTheImages().size();
         SoftAssertions softImages = new SoftAssertions();
-        softImages.assertThat(imageContainerSize).isEqualTo(5);
+        softImages.assertThat(imageContainerSize).isEqualTo(10);
         softImages.assertThat(pageObjectHome.getIconPractise().isDisplayed());
         softImages.assertThat(pageObjectHome.getIconCustom().isDisplayed());
         softImages.assertThat(pageObjectHome.getIconMulti().isDisplayed());
@@ -92,8 +90,6 @@ public class TestEx1Failed extends BaseTest {
     }
 
     //7. Assert that there are 4 texts on the Index Page under icons, and they have proper text
-    @Test
-    @Description("Test to assert text under images")
     @Step
     public void assertTextUnderImage() {
         List<String> expectedText = new ArrayList<>();
@@ -114,15 +110,13 @@ public class TestEx1Failed extends BaseTest {
         }
         SoftAssertions softText = new SoftAssertions();
         softText.assertThat(actualText).isEqualTo(expectedText);
-        softText.assertThat(pageObjectHome.getListOfTheText().size()).isEqualTo(5);
+        softText.assertThat(pageObjectHome.getListOfTheText().size()).isEqualTo(10);
         softText.assertAll();
     }
 
     //8. Assert that there is the iframe with Frame Button exist
     //9. Switch to the iframe and check that there is Frame Button in the iframe
     //10. Switch to original window back
-    @Test
-    @Description("Test to assert the button on the frame")
     @Step
     public void assertIframe() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
@@ -134,8 +128,6 @@ public class TestEx1Failed extends BaseTest {
     }
 
     //11. Assert that there are 5 items in theLeft Section are displayed, and they have proper text
-    @Test
-    @Description("Test to assert the side menu")
     @Step
     public void assertSideMenu() {
         List<String> expectedMenu = new ArrayList<>();
@@ -151,38 +143,8 @@ public class TestEx1Failed extends BaseTest {
             actualMenu.add(i.getText());
         }
         SoftAssertions softLeftMenu = new SoftAssertions();
-        softLeftMenu.assertThat(sideMenuSize).isEqualTo(6);
+        softLeftMenu.assertThat(sideMenuSize).isEqualTo(10);
         softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
-    }
-
-    @Test(dataProvider = "data-provider-for-title")
-    @Description("Test to assert that corresponding page is opened after menu item is clicked")
-    @Step
-    public void parameterTest(String menuItem, String pageTitle) {
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        pageObjectHome.getHeaderPageElements().clickOnServiceItem();
-        By menuItems = By.partialLinkText(menuItem);
-        webDriver.findElement(menuItems).click();
-        new WebDriverWait(webDriver, Duration.ofSeconds(3))
-                .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
-        SoftAssertions softTitle = new SoftAssertions();
-        softTitle.assertThat(webDriver.getTitle()).isEqualTo(pageTitle);
-        softTitle.assertAll();
-    }
-
-    @DataProvider(name = "data-provider-for-title")
-    public Object[][] dataSetForAddition() {
-        return new Object[][]{
-                {"SUPPORT", "Support"},
-                {"DATES", "Dates"},
-                {"SEARCH", "Simple Table"},
-                {"COMPLEX TABLE", "Complex Table"},
-                {"SIMPLE TABLE", "Simple Table"},
-                {"USER TABLE", "User Table"},
-                {"TABLE WITH PAGES", "Table with pages"},
-                {"DIFFERENT ELEMENTS", "Different Elements"},
-                {"PERFORMANCE", "Performance page"},
-        };
     }
 
 }
