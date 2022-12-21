@@ -1,6 +1,6 @@
 package com.epam.tc.hw3.pages;
 
-import static com.epam.tc.hw3.BaseTest.webDriver;
+import static com.epam.tc.hw4.BaseTest.webDriver;
 
 import com.epam.tc.hw3.pages.components.DropDownComponent;
 import org.assertj.core.api.SoftAssertions;
