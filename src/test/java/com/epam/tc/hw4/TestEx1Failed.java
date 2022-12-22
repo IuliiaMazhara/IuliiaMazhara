@@ -19,7 +19,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 
-@Listeners({ScreenShotListener.class})
 @Feature("Check Home Page with failures")
 @Story("Title, login, header menu, images, frame, side menu with failures")
 public class TestEx1Failed extends BaseTest {

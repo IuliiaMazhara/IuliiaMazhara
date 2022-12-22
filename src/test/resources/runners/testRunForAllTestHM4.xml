@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SuiteTestHM4">
     <listeners>
-        <listener class-name="com.epam.tc.hw4.ScreenShotListener"></listener>
+        <listener class-name="com.epam.tc.hw4.utils.ScreenShotListener"></listener>
     </listeners>
     <test name="Home Work 4">
         <classes>

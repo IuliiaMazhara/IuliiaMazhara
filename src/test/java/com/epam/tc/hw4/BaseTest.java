@@ -7,14 +7,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
-@Listeners({ScreenShotListener.class})
+//@Listeners({ScreenShotListener.class})
 public class BaseTest {
     public static WebDriver webDriver;
 
     @BeforeClass
-    public static void prepareToTest(ITestContext context) {
+    public static void prepareToTest(ITestContext testContext) {
         webDriver = new DriverManager().setupDriver();
-        context.setAttribute("driver", webDriver);
+        testContext.setAttribute("driver", webDriver);
     }
 
     @AfterClass
