@@ -15,10 +15,11 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 
-
+@Listeners({ScreenShotListener.class})
 @Feature("Check Home Page with failures")
 @Story("Title, login, header menu, images, frame, side menu with failures")
 public class TestEx1Failed extends BaseTest {
