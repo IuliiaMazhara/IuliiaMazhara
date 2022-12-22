@@ -85,9 +85,9 @@ public class TestEx2 extends BaseTest {
     //9. Assert that for dropdown there is a log row and value is corresponded to the selected value.
     public void assertDropDownLog(String color) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
-        pageObjectDifferentElements.selectDropDown(color);
-        pageObjectDifferentElements.assertDropDown(color);
-        pageObjectDifferentElements.assertDropDownLogger(color);
+        pageObjectDifferentElements.getDropDownComponent().selectDropDown(color);
+        pageObjectDifferentElements.getDropDownComponent().assertDropDown(color);
+        pageObjectDifferentElements.getDropDownComponent().assertDropDownLogger(color);
     }
 
 }
