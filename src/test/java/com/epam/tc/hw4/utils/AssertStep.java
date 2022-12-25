@@ -97,7 +97,7 @@ public class AssertStep {
     public void assertCheckBoxLog(String element) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.assertCheckBoxIsSelected(element);
-        pageObjectDifferentElements.assertCheckBoxIsSelected(element);
+        pageObjectDifferentElements.assertCheckBoxLogger(element);
     }
 
     @Step("Assert radio bok and log")
