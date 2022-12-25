@@ -11,9 +11,6 @@ public class DriverManager {
 
     private void setupChromeDriver() {
         WebDriverManager.chromedriver().setup();
-
-
-
     }
 
     public WebDriver setupDriver() {
@@ -22,11 +19,6 @@ public class DriverManager {
         options.addArguments("--no-sandbox");
         options.addArguments("--incognito");
         WebDriver webDriver = new ChromeDriver(options);
-        webDriver.manage().window().maximize();
-        webDriver.get("https://jdi-testing.github.io/jdi-light/index.html");
         return webDriver;
     }
-
-
-
 }

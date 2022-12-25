@@ -12,7 +12,6 @@ public class ScreenShotListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("Help! Failed");
         Object driver = result.getTestContext().getAttribute("driver");
         if (driver != null) {
             byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);

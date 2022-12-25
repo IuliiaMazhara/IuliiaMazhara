@@ -5,9 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 
-//@Listeners({ScreenShotListener.class})
+
 public class BaseTest {
     public static WebDriver webDriver;
 
@@ -15,6 +14,8 @@ public class BaseTest {
     public static void prepareToTest(ITestContext testContext) {
         webDriver = new DriverManager().setupDriver();
         testContext.setAttribute("driver", webDriver);
+        webDriver.manage().window().maximize();
+        webDriver.get("https://jdi-testing.github.io/jdi-light/index.html");
     }
 
     @AfterClass
