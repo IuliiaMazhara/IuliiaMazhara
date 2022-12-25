@@ -7,11 +7,10 @@ import com.epam.tc.hw3.pages.PageObjectHome;
 import com.epam.tc.hw3.pages.PageObjectLoginPage;
 import io.qameta.allure.Step;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
-
-
 
 
 public class AssertStep {
@@ -33,14 +32,13 @@ public class AssertStep {
 
     @Step("Assert Header")
     public void assertHeaderMenu() {
+        List<String> expectedHeaderMenu = Arrays.asList("Home", "Contact form", "Service", "Metals & Colors");
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        SoftAssertions softHeader = new SoftAssertions();
-        softHeader.assertThat(pageObjectHome.getHeaderPageElements().headerMenuSize()).isEqualTo(4);
-        softHeader.assertThat(pageObjectHome.getHeaderPageElements().getFormHeaderItem().isDisplayed());
-        softHeader.assertThat(pageObjectHome.getHeaderPageElements().getServiceHeaderItem().isDisplayed());
-        softHeader.assertThat(pageObjectHome.getHeaderPageElements().getMetalsAndColorsHeaderItem().isDisplayed());
-        softHeader.assertThat(pageObjectHome.getHeaderPageElements().getHomeHeaderItem().isDisplayed());
-        softHeader.assertAll();
+        SoftAssertions softHeaderMenu = new SoftAssertions();
+        softHeaderMenu.assertThat(pageObjectHome.getHeaderPageElements().getHeaderMenuItems())
+                .isEqualTo(4);
+        softHeaderMenu.assertThat(pageObjectHome.getSideMenuComponent().getSideMenuItems())
+                .isEqualTo(expectedHeaderMenu);
     }
 
     @Step("Assert Images")
@@ -57,17 +55,17 @@ public class AssertStep {
 
     @Step("Assert text under images")
     public void assertTextUnderImage() {
-        List<String> expectedText = new ArrayList<>();
-        expectedText.add("To include good practices\n"
-                + "and ideas from successful\n"
-                + "EPAM project");
-        expectedText.add("To be flexible and\n"
-                + "customizable");
-        expectedText.add("To be multiplatform");
-        expectedText.add("Already have good base\n"
-                + "(about 20 internal and\n"
-                + "some external projects),\n"
-                + "wish to get more…");
+        List<String> expectedText = Arrays.asList(
+                "To include good practices\n"
+                        + "and ideas from successful\n"
+                        + "EPAM project",
+                "To be flexible and\n"
+                        + "customizable",
+                "To be multiplatform",
+                "Already have good base\n"
+                        + "(about 20 internal and\n"
+                        + "some external projects),\n"
+                        + "wish to get more…");
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         List<String> actualText = new ArrayList<>();
         for (WebElement i : pageObjectHome.getListOfTheText()) {
@@ -89,21 +87,14 @@ public class AssertStep {
 
     @Step("Assert Side Menu")
     public void assertSideMenu() {
-        List<String> expectedMenu = new ArrayList<>();
-        expectedMenu.add("Home");
-        expectedMenu.add("Contact form");
-        expectedMenu.add("Service");
-        expectedMenu.add("Metals & Colors");
-        expectedMenu.add("Elements packs");
-        List<String> actualMenu = new ArrayList<>();
+        List<String> expectedSidedMenu = Arrays.asList("Home", "Contact form", "Service",
+                "Metals & Colors", "Elements packs");
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        int sideMenuSize = pageObjectHome.getSideMenuComponent().sideMenuSize();
-        for (WebElement i : pageObjectHome.getSideMenuComponent().getSideMenuItems()) {
-            actualMenu.add(i.getText());
-        }
-        SoftAssertions softLeftMenu = new SoftAssertions();
-        softLeftMenu.assertThat(sideMenuSize).isEqualTo(5);
-        softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
+        SoftAssertions sofSideMenu = new SoftAssertions();
+        sofSideMenu.assertThat(pageObjectHome.getSideMenuComponent().sideMenuSize())
+                .isEqualTo(5);
+        sofSideMenu.assertThat(pageObjectHome.getSideMenuComponent().getSideMenuItems())
+                .isEqualTo(expectedSidedMenu);
     }
 
     @Step("Assert check bok and log")
