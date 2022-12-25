@@ -16,11 +16,7 @@ public class SideMenuComponent {
         return sideMenuItems.size();
     }
 
-    public List<WebElement> getSideMenuItems() {
-        return sideMenuItems;
-    }
-
-    public List<String> getMenu() {
+    public List<String> getSideMenuItems() {
         return sideMenuItems.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 

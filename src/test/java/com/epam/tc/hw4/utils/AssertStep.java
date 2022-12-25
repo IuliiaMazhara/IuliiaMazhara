@@ -15,42 +15,40 @@ import org.openqa.selenium.WebElement;
 
 public class AssertStep {
 
+    SoftAssertions soft = new SoftAssertions();
+
     @Step("Assert title of the page")
     public void assertTitle(String title) {
-        SoftAssertions softTitle = new SoftAssertions();
-        softTitle.assertThat(webDriver.getTitle()).isEqualTo(title);
-        softTitle.assertAll();
+        soft.assertThat(webDriver.getTitle()).isEqualTo(title);
+        soft.assertAll();
     }
 
     @Step("Assert login")
     public void assertLogin() {
         String nameOfLoggedUser = PageObjectLoginPage.using(webDriver).getNamedOfLoggedUser().getText();
-        SoftAssertions softLogin = new SoftAssertions();
-        softLogin.assertThat(nameOfLoggedUser).isEqualTo("ROMAN IOVLEV");
-        softLogin.assertAll();
+        soft.assertThat(nameOfLoggedUser).isEqualTo("ROMAN IOVLEV");
+        soft.assertAll();
     }
 
     @Step("Assert Header")
     public void assertHeaderMenu() {
-        List<String> expectedHeaderMenu = Arrays.asList("Home", "Contact form", "Service", "Metals & Colors");
+        List<String> expectedHeaderMenu = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        SoftAssertions softHeaderMenu = new SoftAssertions();
-        softHeaderMenu.assertThat(pageObjectHome.getHeaderPageElements().getHeaderMenuItems())
+        soft.assertThat(pageObjectHome.getHeaderPageElements().headerMenuSize())
                 .isEqualTo(4);
-        softHeaderMenu.assertThat(pageObjectHome.getSideMenuComponent().getSideMenuItems())
+        soft.assertThat(pageObjectHome.getHeaderPageElements().getHeaderMenuItems())
                 .isEqualTo(expectedHeaderMenu);
     }
 
     @Step("Assert Images")
     public void assertImages() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        SoftAssertions softImages = new SoftAssertions();
-        softImages.assertThat(pageObjectHome.getListOfTheImages().size()).isEqualTo(4);
-        softImages.assertThat(pageObjectHome.getIconPractise().isDisplayed());
-        softImages.assertThat(pageObjectHome.getIconCustom().isDisplayed());
-        softImages.assertThat(pageObjectHome.getIconMulti().isDisplayed());
-        softImages.assertThat(pageObjectHome.getIconBase().isDisplayed());
-        softImages.assertAll();
+        soft.assertThat(pageObjectHome.getListOfTheImages().size()).isEqualTo(4);
+        soft.assertThat(pageObjectHome.getIconPractise().isDisplayed());
+        soft.assertThat(pageObjectHome.getIconCustom().isDisplayed());
+        soft.assertThat(pageObjectHome.getIconMulti().isDisplayed());
+        soft.assertThat(pageObjectHome.getIconBase().isDisplayed());
+        soft.assertAll();
     }
 
     @Step("Assert text under images")
@@ -71,18 +69,16 @@ public class AssertStep {
         for (WebElement i : pageObjectHome.getListOfTheText()) {
             actualText.add(i.getText());
         }
-        SoftAssertions softText = new SoftAssertions();
-        softText.assertThat(actualText).isEqualTo(expectedText);
-        softText.assertThat(pageObjectHome.getListOfTheText().size()).isEqualTo(4);
-        softText.assertAll();
+        soft.assertThat(actualText).isEqualTo(expectedText);
+        soft.assertThat(pageObjectHome.getListOfTheText().size()).isEqualTo(4);
+        soft.assertAll();
     }
 
     @Step("Assert Iframe")
     public void assertIframe() {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        SoftAssertions softFrameButton = new SoftAssertions();
-        softFrameButton.assertThat(pageObjectHome.getFrameButton().isDisplayed());
-        softFrameButton.assertAll();
+        soft.assertThat(pageObjectHome.getFrameButton().isDisplayed());
+        soft.assertAll();
     }
 
     @Step("Assert Side Menu")
@@ -90,18 +86,18 @@ public class AssertStep {
         List<String> expectedSidedMenu = Arrays.asList("Home", "Contact form", "Service",
                 "Metals & Colors", "Elements packs");
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        SoftAssertions sofSideMenu = new SoftAssertions();
-        sofSideMenu.assertThat(pageObjectHome.getSideMenuComponent().sideMenuSize())
+        soft.assertThat(pageObjectHome.getSideMenuComponent().sideMenuSize())
                 .isEqualTo(5);
-        sofSideMenu.assertThat(pageObjectHome.getSideMenuComponent().getSideMenuItems())
+        soft.assertThat(pageObjectHome.getSideMenuComponent().getSideMenuItems())
                 .isEqualTo(expectedSidedMenu);
+        soft.assertAll();
     }
 
     @Step("Assert check bok and log")
     public void assertCheckBoxLog(String element) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.assertCheckBoxIsSelected(element);
-        pageObjectDifferentElements.assertCheckBoxLogger(element);
+        pageObjectDifferentElements.assertCheckBoxIsSelected(element);
     }
 
     @Step("Assert radio bok and log")

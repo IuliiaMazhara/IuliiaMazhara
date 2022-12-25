@@ -7,12 +7,14 @@ import com.epam.tc.hw3.pages.PageObjectLoginPage;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
 
 
 
@@ -117,21 +119,15 @@ public class TestEx1 extends BaseTest {
     //11. Assert that there are 5 items in theLeft Section are displayed, and they have proper text
 
     public void assertSideMenu() {
-        List<String> expectedMenu = new ArrayList<>();
-        expectedMenu.add("Home");
-        expectedMenu.add("Contact form");
-        expectedMenu.add("Service");
-        expectedMenu.add("Metals & Colors");
-        expectedMenu.add("Elements packs");
-        List<String> actualMenu = new ArrayList<>();
+        List<String> expectedSidedMenu = Arrays.asList("Home", "Contact form", "Service",
+                "Metals & Colors", "Elements packs");
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
-        int sideMenuSize = pageObjectHome.getSideMenuComponent().sideMenuSize();
-        for (WebElement i : pageObjectHome.getSideMenuComponent().getSideMenuItems()) {
-            actualMenu.add(i.getText());
-        }
-        SoftAssertions softLeftMenu = new SoftAssertions();
-        softLeftMenu.assertThat(sideMenuSize).isEqualTo(5);
-        softLeftMenu.assertThat(actualMenu).isEqualTo(expectedMenu);
+        SoftAssertions softSideMenu = new SoftAssertions();
+        softSideMenu.assertThat(pageObjectHome.getSideMenuComponent().sideMenuSize())
+                .isEqualTo(5);
+        softSideMenu.assertThat(pageObjectHome.getSideMenuComponent().getSideMenuItems())
+                .isEqualTo(expectedSidedMenu);
+        softSideMenu.assertAll();
     }
 
 }
