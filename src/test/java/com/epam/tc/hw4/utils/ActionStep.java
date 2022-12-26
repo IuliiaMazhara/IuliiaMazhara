@@ -1,18 +1,23 @@
 package com.epam.tc.hw4.utils;
 
 
-import com.epam.tc.hw3.pages.PageObjectDifferentElements;
-import com.epam.tc.hw3.pages.PageObjectHome;
-import com.epam.tc.hw3.pages.PageObjectLoginPage;
-import com.epam.tc.hw4.BaseTest;
+import static com.epam.tc.hw4.BaseTest.webDriver;
+
 import io.qameta.allure.Step;
 import java.io.IOException;
+import org.openqa.selenium.WebDriver;
 
-public class ActionStep extends BaseTest {
+
+
+public class ActionStep extends InitializePageObject {
+
+    public ActionStep(WebDriver webDriver) {
+        super(webDriver);
+    }
 
     @Step("Log in")
     public void loggIn() throws IOException {
-        PageObjectLoginPage.using(webDriver)
+        pageObjectLoginPage
                 .clickUserIcon()
                 .setUsername()
                 .setPassword()
@@ -31,26 +36,22 @@ public class ActionStep extends BaseTest {
 
     @Step("Navigate To Different Elements page")
     public void navigateToDifferentElementsPage() {
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         pageObjectHome.getHeaderPageElements().clickOnServiceItem();
         pageObjectHome.clickDifferentElementServiceMenuItem();
     }
 
     @Step("Click on checkbox")
     public void clickOnCheckBox(String element) {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.clickOnElementCheckBox(element);
     }
 
     @Step("Click on radio box")
     public void clickOnRadioBox(String metal) {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.clickOnMetalRadioButton(metal);
     }
 
     @Step("Choose Dropdown Item")
     public void chooseDropdownItem(String color) {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.getDropDownComponent().selectDropDown(color);
     }
 

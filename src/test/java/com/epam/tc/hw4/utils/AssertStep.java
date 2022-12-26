@@ -10,10 +10,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-public class AssertStep {
+public class AssertStep extends InitializePageObject {
+
+    public AssertStep(WebDriver webDriver) {
+        super(webDriver);
+    }
 
     SoftAssertions soft = new SoftAssertions();
 
@@ -42,7 +47,6 @@ public class AssertStep {
 
     @Step("Assert Images")
     public void assertImages() {
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         soft.assertThat(pageObjectHome.getListOfTheImages().size()).isEqualTo(4);
         soft.assertThat(pageObjectHome.getIconPractise().isDisplayed());
         soft.assertThat(pageObjectHome.getIconCustom().isDisplayed());
@@ -64,7 +68,6 @@ public class AssertStep {
                         + "(about 20 internal and\n"
                         + "some external projects),\n"
                         + "wish to get more…");
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         List<String> actualText = new ArrayList<>();
         for (WebElement i : pageObjectHome.getListOfTheText()) {
             actualText.add(i.getText());
@@ -76,7 +79,6 @@ public class AssertStep {
 
     @Step("Assert Iframe")
     public void assertIframe() {
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         soft.assertThat(pageObjectHome.getFrameButton().isDisplayed());
         soft.assertAll();
     }
@@ -85,7 +87,6 @@ public class AssertStep {
     public void assertSideMenu() {
         List<String> expectedSidedMenu = Arrays.asList("Home", "Contact form", "Service",
                 "Metals & Colors", "Elements packs");
-        PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         soft.assertThat(pageObjectHome.getSideMenuComponent().sideMenuSize())
                 .isEqualTo(5);
         soft.assertThat(pageObjectHome.getSideMenuComponent().getSideMenuItems())
@@ -95,21 +96,18 @@ public class AssertStep {
 
     @Step("Assert checkbox and log")
     public void assertCheckBoxLog(String element) {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.assertCheckBoxIsSelected(element);
         pageObjectDifferentElements.assertCheckBoxLogger(element);
     }
 
     @Step("Assert radio box and log")
     public void assertRadioBoxLog(String metal) {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.assertRadioBoxIsSelected(metal);
         pageObjectDifferentElements.assertRadioLogger(metal);
     }
 
     @Step("Assert dropdown and log")
     public void assertDropDownLog(String color) {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.getDropDownComponent().assertDropDown(color);
         pageObjectDifferentElements.getDropDownComponent().assertDropDownLogger(color);
     }

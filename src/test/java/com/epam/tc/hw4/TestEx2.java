@@ -1,17 +1,11 @@
 package com.epam.tc.hw4;
 
 
-import com.epam.tc.hw4.utils.ActionStep;
-import com.epam.tc.hw4.utils.AssertStep;
 import java.io.IOException;
 import org.testng.annotations.Test;
 
 
 public class TestEx2 extends BaseTest {
-
-    AssertStep assertStep = new AssertStep();
-    ActionStep actionStep = new ActionStep();
-
     @Test
     public void verifyDifferentElements() throws IOException {
         assertStep.assertTitle("Home Page");
