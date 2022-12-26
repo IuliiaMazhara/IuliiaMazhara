@@ -93,21 +93,21 @@ public class AssertStep {
         soft.assertAll();
     }
 
-    @Step("Assert check bok and log")
+    @Step("Assert checkbox and log")
     public void assertCheckBoxLog(String element) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.assertCheckBoxIsSelected(element);
         pageObjectDifferentElements.assertCheckBoxLogger(element);
     }
 
-    @Step("Assert radio bok and log")
+    @Step("Assert radio box and log")
     public void assertRadioBoxLog(String metal) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.assertRadioBoxIsSelected(metal);
         pageObjectDifferentElements.assertRadioLogger(metal);
     }
 
-    @Step("Assert dropdown bok and log")
+    @Step("Assert dropdown and log")
     public void assertDropDownLog(String color) {
         PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
         pageObjectDifferentElements.getDropDownComponent().assertDropDown(color);
