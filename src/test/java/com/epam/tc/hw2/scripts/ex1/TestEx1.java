@@ -43,7 +43,6 @@ public class TestEx1 extends InitializeKillWebSite {
         driver.findElement(By.id(("login-button"))).click();
         By userName = By.id("user-name");
         WebElement userNameElement = driver.findElement(userName);
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOf(userNameElement));
         SoftAssertions softLogin = new SoftAssertions();
         softLogin.assertThat(userNameElement.getText()).isEqualTo("ROMAN IOVLEV");
         softLogin.assertAll();

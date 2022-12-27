@@ -191,10 +191,28 @@
         <profile>
             <id>HM4</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml.file>testRunForAllTestHM4.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>HM6</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM6.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>HM6R</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM6Remote.xml</suite.xml.file>
             </properties>
         </profile>
     </profiles>

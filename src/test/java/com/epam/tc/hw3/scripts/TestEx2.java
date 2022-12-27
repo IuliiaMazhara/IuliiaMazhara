@@ -42,7 +42,7 @@ public class TestEx2 extends BaseTest {
                 .setUsername()
                 .setPassword()
                 .clickSignInButton();
-        new WebDriverWait(webDriver, Duration.ofSeconds(6))
+        new WebDriverWait(webDriver, 3)
                 .until(ExpectedConditions.visibilityOf(PageObjectLoginPage.using(webDriver).getNamedOfLoggedUser()));
         String nameOfLoggedUser = PageObjectLoginPage.using(webDriver).getNamedOfLoggedUser().getText();
         SoftAssertions softLogin = new SoftAssertions();
@@ -55,7 +55,7 @@ public class TestEx2 extends BaseTest {
         PageObjectHome pageObjectHome = new PageObjectHome(webDriver);
         pageObjectHome.getHeaderPageElements().clickOnServiceItem();
         pageObjectHome.clickDifferentElementServiceMenuItem();
-        new WebDriverWait(webDriver, Duration.ofSeconds(3))
+        new WebDriverWait(webDriver, 3)
                 .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
         SoftAssertions softDifferentElements = new SoftAssertions();
         softDifferentElements.assertThat(webDriver.getTitle()).isEqualTo("Different Elements");

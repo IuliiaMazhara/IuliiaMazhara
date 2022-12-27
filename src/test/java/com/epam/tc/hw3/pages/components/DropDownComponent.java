@@ -2,7 +2,6 @@ package com.epam.tc.hw3.pages.components;
 
 import static com.epam.tc.hw4.BaseTest.webDriver;
 
-import com.epam.tc.hw3.pages.PageObjectDifferentElements;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -21,16 +20,14 @@ public class DropDownComponent {
     }
 
     public void selectDropDown(String color) {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
-        pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
-        Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
+        clickOnDropDown();
+        Select dropDownColors = new Select(dropDownColor);
         dropDownColors.selectByVisibleText(color);
     }
 
     public void assertDropDown(String color) {
-        PageObjectDifferentElements pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
-        pageObjectDifferentElements.getDropDownComponent().clickOnDropDown();
-        Select dropDownColors = new Select(pageObjectDifferentElements.getDropDownComponent().getDropDownColor());
+        clickOnDropDown();
+        Select dropDownColors = new Select(dropDownColor);
         String selectedOption = dropDownColors.getFirstSelectedOption().getText();
         SoftAssertions softDropDown = new SoftAssertions();
         softDropDown.assertThat(selectedOption).isEqualTo(color);
