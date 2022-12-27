@@ -1,17 +1,12 @@
-package com.epam.tc.hw3.pages;
+package com.epam.tc.hw5.pages;
 
-import static com.epam.tc.hw3.utils.ConfigReader.getUserNameFromProperties;
-import static com.epam.tc.hw3.utils.ConfigReader.getUserPasswordFromProperties;
 
-import java.io.IOException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-
-
-public class PageObjectLoginPage {
+public class PageObjectLoginPage extends MainPage {
 
     @FindBy(id = "user-icon")
     private WebElement userIcon;
@@ -30,6 +25,7 @@ public class PageObjectLoginPage {
 
 
     public PageObjectLoginPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -37,26 +33,15 @@ public class PageObjectLoginPage {
         return new PageObjectLoginPage(driver);
     }
 
-    public PageObjectLoginPage setUsername() throws IOException {
-        this.name.sendKeys(getUserNameFromProperties());
+    public PageObjectLoginPage setUsernameParameter(String usernameParameter) {
+        this.name.sendKeys(usernameParameter);
         return this;
     }
 
-    public PageObjectLoginPage setUsernameFromParameters(String username) {
-        this.name.sendKeys(username);
+    public PageObjectLoginPage setPasswordParameter(String passwordParameter) {
+        this.password.sendKeys(passwordParameter);
         return this;
     }
-
-    public PageObjectLoginPage setPassword() throws IOException {
-        this.password.sendKeys(getUserPasswordFromProperties());
-        return this;
-    }
-
-    public PageObjectLoginPage setPasswordParameters(String passwordParameters) {
-        this.password.sendKeys(passwordParameters);
-        return this;
-    }
-
 
     public void clickSignInButton() {
         this.signInButton.click();
