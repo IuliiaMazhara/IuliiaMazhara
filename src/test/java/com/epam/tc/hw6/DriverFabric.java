@@ -9,6 +9,7 @@ import lombok.experimental.UtilityClass;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -26,6 +27,9 @@ public class DriverFabric {
             switch (browser.toUpperCase(Locale.ROOT)) {
                 case "OPERA":
                     caps = new OperaOptions();
+                    break;
+                case "FIREFOX":
+                    caps = new FirefoxOptions();
                     break;
                 case "CHROME":
                 default:
