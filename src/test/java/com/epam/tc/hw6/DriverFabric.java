@@ -1,43 +1,40 @@
 package com.epam.tc.hw6;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.net.URL;
-import java.util.Locale;
 import lombok.NonNull;
-import lombok.SneakyThrows;
-import lombok.experimental.UtilityClass;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.opera.OperaOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 
-@UtilityClass
 public class DriverFabric {
 
-    @SneakyThrows
-    public WebDriver getWebDriver(final boolean isLocal, final String hub, @NonNull final String browser) {
-        if (isLocal) {
-            return WebDriverManager.getInstance(browser).create();
-        } else {
+    private static final String CHROME = "CHROME";
+    private static final String FIREFOX = "FIREFOX";
 
-            Capabilities caps;
-            switch (browser.toUpperCase(Locale.ROOT)) {
-                case "OPERA":
-                    caps = new OperaOptions();
-                    break;
-                case "FIREFOX":
-                    caps = new FirefoxOptions();
-                    break;
-                case "CHROME":
-                default:
-                    caps = new ChromeOptions();
-                    break;
-            }
-            return new RemoteWebDriver(new URL(hub), caps);
+    public static WebDriver getWebDriver(final boolean isLocal, final String hub, @NonNull final String browser) {
+        WebDriver webDriver;
+        switch (browser.toUpperCase()) {
+            case FIREFOX:
+                webDriver = createFirefox();
+                break;
+            case CHROME:
+            default:
+                webDriver = createChrome();
+                break;
         }
-
+        return webDriver;
     }
+
+    private static WebDriver createChrome() {
+        WebDriverManager.chromedriver().setup();
+        return new ChromeDriver();
+    }
+
+    private static WebDriver createFirefox() {
+        WebDriverManager.firefoxdriver().setup();
+        return new FirefoxDriver();
+    }
+
 }
+
