@@ -19,6 +19,8 @@ public class TestEx2 extends BaseTest {
         assertStep.assertCheckBoxLog("Wind");
         actionStep.clickOnRadioBox("Selen");
         assertStep.assertRadioBoxLog("Selen");
+        actionStep.chooseDropdownItem("Yellow");
+        assertStep.assertDropDownLog("Yellow");
     }
 
 }
