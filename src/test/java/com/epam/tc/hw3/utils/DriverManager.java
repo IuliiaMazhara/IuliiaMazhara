@@ -14,10 +14,7 @@ public class DriverManager {
 
     public WebDriver setupDriver() {
         setupChromeDriver();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--incognito");
-        WebDriver webDriver = new ChromeDriver(options);
+        WebDriver webDriver = new ChromeDriver();
         return webDriver;
     }
 }
