@@ -1,6 +1,6 @@
 package com.epam.tc.hw3.pages;
 
-import static com.epam.tc.hw3.BaseTest.webDriver;
+import static com.epam.tc.hw4.BaseTest.webDriver;
 
 import com.epam.tc.hw3.pages.components.DropDownComponent;
 import org.assertj.core.api.SoftAssertions;
@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 
 public class PageObjectDifferentElements {

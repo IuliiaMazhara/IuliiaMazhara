@@ -29,7 +29,7 @@ public class PageObjectLoginPage {
     private WebElement namedOfLoggedUser;
 
 
-    private PageObjectLoginPage(WebDriver driver) {
+    public PageObjectLoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 

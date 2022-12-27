@@ -2,6 +2,7 @@ package com.epam.tc.hw3.pages.components;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -48,6 +49,10 @@ public class HeaderMenuComponent {
 
     public void clickOnServiceItem() {
         serviceHeaderItem.click();
+    }
+
+    public List<String> getHeaderMenuItems() {
+        return navigationHeader.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
 }
