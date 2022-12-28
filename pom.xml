@@ -221,5 +221,14 @@
                 <suite.xml.file>testRunForAllTestHM6Remote.xml</suite.xml.file>
             </properties>
         </profile>
+        <profile>
+            <id>HM5</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM5.xml</suite.xml.file>
+            </properties>
+        </profile>
     </profiles>
 </project>
