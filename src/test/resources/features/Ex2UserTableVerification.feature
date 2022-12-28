@@ -28,3 +28,7 @@ Feature: Verify elements on Home Page
       | Admin           |
       | User            |
       | Manager         |
+
+  Scenario: Vip user checkbox validation
+    When I select vip checkbox for "Sergey Ivan"
+    Then 1 log row has "Vip: condition changed to true" text in log section

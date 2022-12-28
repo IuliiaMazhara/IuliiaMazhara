@@ -10,9 +10,9 @@ public abstract class MainPage {
 
     public WebDriver webDriver;
 
-    public MainPage(WebDriver driver) {
-        this.webDriver = driver;
-        PageFactory.initElements(driver, this);
+    public MainPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this);
     }
 
     public String getTitle() {

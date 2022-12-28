@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 public class SideMenuComponent {
 
     @FindBy(css = ".sidebar-menu > li")
@@ -18,5 +19,4 @@ public class SideMenuComponent {
     public List<String> getSideMenuItems() {
         return sideMenuItems.stream().map(WebElement::getText).collect(Collectors.toList());
     }
-
 }

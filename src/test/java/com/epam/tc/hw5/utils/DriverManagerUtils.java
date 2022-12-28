@@ -10,10 +10,8 @@ public class DriverManagerUtils {
     private static WebDriver webDriver;
 
     public static WebDriver setupDriver() {
-        String browserName = System
-                .getProperty("browser") == null ? "chrome" : System.getProperty("browser");
         if (Objects.isNull(webDriver)) {
-            webDriver = WebDriverFactory.getWebDriver(browserName);
+            webDriver = WebDriverFactory.getWebDriver("chrome");
         }
         return webDriver;
     }
