@@ -3,7 +3,7 @@ package com.epam.tc.hw5.pages;
 
 import com.epam.tc.hw5.pages.components.HeaderMenuComponent;
 import com.epam.tc.hw5.pages.components.SideMenuComponent;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +16,9 @@ public class PageObjectHome extends MainPage {
     private final SideMenuComponent sideMenuComponent;
     @FindBy(partialLinkText = "DIFFERENT ELEMENTS")
     private WebElement differentElementServiceMenuItem;
+
+    @FindBy(partialLinkText = "SERVICE")
+    private WebElement serviceHeaderItem;
 
     public PageObjectHome(WebDriver driver) {
         super(driver);
@@ -46,4 +49,16 @@ public class PageObjectHome extends MainPage {
     public HeaderMenuComponent getHeaderPageElements() {
         return headerPageElements;
     }
+
+    public void clickOnServiceMenuItem() {
+        serviceHeaderItem.click();
+    }
+
+    public void clickServiceMenuItem(String item) {
+        By serviceMenuItemPath = new By.ByXPath("//a/span[contains(text(),'" + item + "')]");
+        WebElement serviceMenuItem = driver.findElement(serviceMenuItemPath);
+        serviceMenuItem.click();
+    }
+
 }
+

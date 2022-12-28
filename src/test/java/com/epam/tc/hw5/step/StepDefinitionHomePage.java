@@ -3,7 +3,6 @@ package com.epam.tc.hw5.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.epam.tc.hw3.pages.PageObjectLoginPage;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -68,11 +67,16 @@ public class StepDefinitionHomePage extends InitializePageObject {
     public void user_select_dropdown(String color) {
         pageObjectDifferentElements.getDropDownComponent().selectDropDown(color);
     }
+
     @Then("dropdown {string} should be selected and logged")
     public void dropdown_should_be_selected_and_logged(String color) {
         pageObjectDifferentElements.getDropDownComponent().assertDropDown(color);
         pageObjectDifferentElements.getDropDownComponent().assertDropDownLogger(color);
     }
 
-
+    @When("I click on {string} button in Service dropdown")
+    public void click_item__service_dropdown(String item) {
+        pageObjectHome.clickOnServiceMenuItem();
+        pageObjectHome.clickServiceMenuItem(item);
+    }
 }
