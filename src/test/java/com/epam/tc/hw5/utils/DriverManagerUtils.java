@@ -1,23 +1,20 @@
 package com.epam.tc.hw5.utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import lombok.experimental.UtilityClass;
+
+import java.util.Objects;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 
-@UtilityClass
 public class DriverManagerUtils {
 
     private static WebDriver webDriver;
 
     public static WebDriver setupDriver() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--incognito");
-        WebDriver webDriver = new ChromeDriver(options);
+        String browserName = System
+                .getProperty("browser") == null ? "chrome" : System.getProperty("browser");
+        if (Objects.isNull(webDriver)) {
+            webDriver = WebDriverFactory.getWebDriver(browserName);
+        }
         return webDriver;
     }
 

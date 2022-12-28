@@ -9,14 +9,13 @@ import com.epam.tc.hw5.utils.DriverManagerUtils;
 import org.openqa.selenium.WebDriver;
 
 
-
 public class InitializePageObject {
 
     protected PageObjectDifferentElements pageObjectDifferentElements;
     protected PageObjectHome pageObjectHome;
     protected PageObjectLoginPage pageObjectLoginPage;
 
-    protected PageObjectUserTable pageObjectUserTabel;
+    protected PageObjectUserTable pageObjectUserTable;
 
     protected WebDriver webDriver;
 
@@ -30,6 +29,6 @@ public class InitializePageObject {
 
         pageObjectDifferentElements = new PageObjectDifferentElements(webDriver);
 
-        pageObjectUserTabel = new PageObjectUserTable(webDriver);
+        pageObjectUserTable = new PageObjectUserTable(webDriver);
     }
 }

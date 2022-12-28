@@ -8,15 +8,15 @@ import org.testng.Assert;
 
 public abstract class MainPage {
 
-    protected WebDriver driver;
+    public WebDriver webDriver;
 
-    protected MainPage(WebDriver driver) {
-        this.driver = driver;
+    public MainPage(WebDriver driver) {
+        this.webDriver = driver;
         PageFactory.initElements(driver, this);
     }
 
     public String getTitle() {
-        return driver.getTitle();
+        return webDriver.getTitle();
     }
 
     public void elementIsDisplayed(WebElement element) {

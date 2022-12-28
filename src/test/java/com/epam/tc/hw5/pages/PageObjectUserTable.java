@@ -60,13 +60,13 @@ public class PageObjectUserTable extends MainPage {
     public void valueDropdown(String value) {
         numberTypeDropdowns.get(0).click();
         By dropElementPath = new By.ByXPath("//select/option[contains(. ,'" + value + "')]");
-        WebElement dropdownValue = driver.findElement(dropElementPath);
+        WebElement dropdownValue = webDriver.findElement(dropElementPath);
         elementIsDisplayed(dropdownValue);
     }
 
     public void clickVipCheckBox(String checkboxOption) {
         By checkBoxElementPath = new By.ByXPath("//*[@id = '" + checkboxOption + "']");
-        WebElement checkBoxValue = driver.findElement(checkBoxElementPath);
+        WebElement checkBoxValue = webDriver.findElement(checkBoxElementPath);
         checkBoxValue.click();
     }
 
@@ -76,7 +76,7 @@ public class PageObjectUserTable extends MainPage {
 
     public void assertLogText(String logText) {
         By logPath = new By.ByXPath("//li[contains(. ,'" + logText + "')]");
-        WebElement log = driver.findElement(logPath);
+        WebElement log = webDriver.findElement(logPath);
         elementIsDisplayed(log);
     }
 
@@ -95,6 +95,10 @@ public class PageObjectUserTable extends MainPage {
     public List<String> getDescInTableValues() {
         return descInTable.stream()
                 .map(n -> n.getText())
+                .map(n -> n.trim())
+                .map(n -> n.replaceAll("\\s", " "))
+                .map(n -> n.replaceAll("Vip", " "))
+                .map(n -> n.trim())
                 .collect(Collectors.toList());
     }
 }

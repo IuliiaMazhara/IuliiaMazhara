@@ -3,7 +3,7 @@
 <suite name="SuiteTestHM5">
     <test name="Home Work 5">
         <classes>
-            <class name= "com.epam.tc.hw5.runner.CucumberRunner"/>
+            <class name= "com.epam.tc.hw5.runner.CucumberRunnerEx"/>
         </classes>
     </test>
 </suite>

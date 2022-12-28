@@ -1,18 +1,17 @@
-package com.epam.tc.hw6;
+package com.epam.tc.hw5.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import lombok.NonNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
-public class DriverFabric {
+public class WebDriverFactory {
 
     private static final String CHROME = "CHROME";
     private static final String FIREFOX = "FIREFOX";
 
-    public static WebDriver getWebDriver(final boolean isLocal, final String hub, @NonNull final String browser) {
+    public static WebDriver getWebDriver(String browser) {
         WebDriver webDriver;
         switch (browser.toUpperCase()) {
             case FIREFOX:

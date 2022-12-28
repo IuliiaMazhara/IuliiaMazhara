@@ -26,37 +26,37 @@ public class PageObjectDifferentElements extends MainPage {
 
     public void clickOnElementCheckBox(String element) {
         By checkBoxElementPath = new By.ByXPath("//label[text()[contains(., ' " + element + "')]]/*[@type='checkbox']");
-        WebElement checkBoxElement = driver.findElement(checkBoxElementPath);
+        WebElement checkBoxElement = webDriver.findElement(checkBoxElementPath);
         checkBoxElement.click();
     }
 
     public void assertCheckBoxIsSelected(String element) {
         By checkBoxElementPath = new By.ByXPath("//label[text()[contains(., ' " + element + "')]]/*[@type='checkbox']");
-        WebElement checkBoxElement = driver.findElement(checkBoxElementPath);
+        WebElement checkBoxElement = webDriver.findElement(checkBoxElementPath);
         assertThat(checkBoxElement.isSelected()).isTrue();
     }
 
     public void assertCheckBoxLogger(String element) {
         By loggerPath = new By.ByXPath("//*[contains(text(),'" + element + ": condition changed to true')]");
-        WebElement checkBoxElement = driver.findElement(loggerPath);
+        WebElement checkBoxElement = webDriver.findElement(loggerPath);
         elementIsDisplayed(checkBoxElement);
     }
 
     public void clickOnMetalRadioButton(String metal) {
         By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + metal + "')]]/*[@type='radio']");
-        WebElement radioElement = driver.findElement(radioMetalPath);
+        WebElement radioElement = webDriver.findElement(radioMetalPath);
         radioElement.click();
     }
 
     public void assertRadioBoxIsSelected(String metal) {
         By radioMetalPath = new By.ByXPath("//label[text()[contains(., ' " + metal + "')]]/*[@type='radio']");
-        WebElement radioElement = driver.findElement(radioMetalPath);
+        WebElement radioElement = webDriver.findElement(radioMetalPath);
         elementIsDisplayed(radioElement);
     }
 
     public void assertRadioLogger(String metal) {
         By loggerRadioPath = new By.ByXPath("//*[contains(text(),'metal: value changed to  " + metal + "')]");
-        WebElement radioLoggerElement = driver.findElement(loggerRadioPath);
+        WebElement radioLoggerElement = webDriver.findElement(loggerRadioPath);
         elementIsDisplayed(radioLoggerElement);
     }
 }

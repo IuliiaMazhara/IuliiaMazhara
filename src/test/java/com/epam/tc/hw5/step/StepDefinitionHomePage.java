@@ -2,7 +2,7 @@ package com.epam.tc.hw5.step;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.epam.tc.hw3.pages.PageObjectLoginPage;
+import com.epam.tc.hw5.pages.PageObjectLoginPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -76,7 +76,7 @@ public class StepDefinitionHomePage extends InitializePageObject {
 
     @When("I click on {string} button in Service dropdown")
     public void click_item__service_dropdown(String item) {
-        pageObjectHome.clickOnServiceMenuItem();
+        pageObjectHome.getHeaderPageElements().clickOnServiceItem();
         pageObjectHome.clickServiceMenuItem(item);
     }
 }

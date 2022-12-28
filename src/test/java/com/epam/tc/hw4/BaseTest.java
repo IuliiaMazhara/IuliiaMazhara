@@ -1,11 +1,9 @@
 package com.epam.tc.hw4;
 
-import com.epam.tc.hw3.utils.DriverManager;
+
 import com.epam.tc.hw4.utils.ActionStep;
 import com.epam.tc.hw4.utils.AssertStep;
 import com.epam.tc.hw6.DriverFabric;
-import lombok.NonNull;
-import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;

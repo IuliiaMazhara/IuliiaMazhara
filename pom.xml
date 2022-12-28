@@ -206,7 +206,7 @@
         <profile>
             <id>HM6</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml.file>testRunForAllTestHM6.xml</suite.xml.file>

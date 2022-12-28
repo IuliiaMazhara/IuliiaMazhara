@@ -17,9 +17,6 @@ public class PageObjectHome extends MainPage {
     @FindBy(partialLinkText = "DIFFERENT ELEMENTS")
     private WebElement differentElementServiceMenuItem;
 
-    @FindBy(partialLinkText = "SERVICE")
-    private WebElement serviceHeaderItem;
-
     public PageObjectHome(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -42,23 +39,18 @@ public class PageObjectHome extends MainPage {
     }
 
     public void openHomePage() {
-        driver.manage().window().maximize();
-        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+        webDriver.manage().window().maximize();
+        webDriver.get("https://jdi-testing.github.io/jdi-light/index.html");
     }
 
     public HeaderMenuComponent getHeaderPageElements() {
         return headerPageElements;
     }
 
-    public void clickOnServiceMenuItem() {
-        serviceHeaderItem.click();
-    }
-
     public void clickServiceMenuItem(String item) {
-        By serviceMenuItemPath = new By.ByXPath("//a/span[contains(text(),'" + item + "')]");
-        WebElement serviceMenuItem = driver.findElement(serviceMenuItemPath);
+        By serviceMenuItemPath = new By.ByXPath("//a[contains(text(),'" + item + "')]");
+        WebElement serviceMenuItem = webDriver.findElement(serviceMenuItemPath);
         serviceMenuItem.click();
     }
 
 }
-
