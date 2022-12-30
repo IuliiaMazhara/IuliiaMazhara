@@ -46,7 +46,7 @@ public class TestEx1 extends BaseTest {
                 .setUsername()
                 .setPassword()
                 .clickSignInButton();
-        new WebDriverWait(webDriver, Duration.ofSeconds(6))
+        new WebDriverWait(webDriver, 3)
                 .until(ExpectedConditions.visibilityOf(PageObjectLoginPage.using(webDriver).getNamedOfLoggedUser()));
         String nameOfLoggedUser = PageObjectLoginPage.using(webDriver).getNamedOfLoggedUser().getText();
         SoftAssertions softLogin = new SoftAssertions();

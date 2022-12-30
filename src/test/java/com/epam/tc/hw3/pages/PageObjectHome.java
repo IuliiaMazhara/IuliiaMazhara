@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 
 
+
 public class PageObjectHome {
 
     private final HeaderMenuComponent headerPageElements;
@@ -92,4 +93,6 @@ public class PageObjectHome {
     public SideMenuComponent getSideMenuComponent() {
         return sideMenuComponent;
     }
+
+
 }

@@ -2,7 +2,6 @@ package com.epam.tc.hw4.utils;
 
 import static com.epam.tc.hw4.BaseTest.webDriver;
 
-import com.epam.tc.hw3.pages.PageObjectDifferentElements;
 import com.epam.tc.hw3.pages.PageObjectHome;
 import com.epam.tc.hw3.pages.PageObjectLoginPage;
 import io.qameta.allure.Step;

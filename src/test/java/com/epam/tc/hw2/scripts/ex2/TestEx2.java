@@ -44,7 +44,7 @@ public class TestEx2 extends InitializeKillWebSite {
         driver.findElement(By.id(("login-button"))).click();;
         By userName = By.id("user-name");
         WebElement userNameElement = driver.findElement(userName);
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOf(userNameElement));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(userNameElement));
         SoftAssertions softLogin = new SoftAssertions();
         softLogin.assertThat(userNameElement.getText()).isEqualTo("ROMAN IOVLEV");
         softLogin.assertAll();
@@ -57,7 +57,7 @@ public class TestEx2 extends InitializeKillWebSite {
         serviceElement.click();
         WebElement menuItemDifferentElements = driver.findElement(By.partialLinkText("DIFFERENT ELEMENTS"));
         menuItemDifferentElements.click();
-        new WebDriverWait(driver, Duration.ofSeconds(3))
+        new WebDriverWait(driver, 3)
                 .until(dr -> ((JavascriptExecutor) dr).executeScript("return document.readyState").equals("complete"));
         SoftAssertions softDifferentElements = new SoftAssertions();
         softDifferentElements.assertThat(driver.getTitle()).isEqualTo("Different Elements");

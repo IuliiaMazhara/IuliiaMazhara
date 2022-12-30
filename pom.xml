@@ -85,7 +85,13 @@
             <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
-<!--        <dependency>-->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!--        <dependency>-->
 <!--            <groupId>com.calc</groupId>-->
 <!--            <artifactId>calc</artifactId>-->
 <!--            <version>${calc}</version>-->
@@ -191,10 +197,37 @@
         <profile>
             <id>HM4</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.xml.file>testRunForAllTestHM4.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>HM6</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM6.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>HM6R</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM6Remote.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>HM5</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file>testRunForAllTestHM5.xml</suite.xml.file>
             </properties>
         </profile>
     </profiles>
