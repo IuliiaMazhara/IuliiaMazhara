@@ -10,11 +10,9 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 
 
-
 public class MetalColorPage extends WebPage {
 
     public MetalColorForm metalColorForm;
-    public MetalColor metalColor;
 
     @Css(".results li")
     private WebList log;
@@ -23,8 +21,9 @@ public class MetalColorPage extends WebPage {
         metalColorForm.fill(metalColor);
     }
 
-    public void assertResultLog() {
-        expectedActualResultLog();
+    public void assertResultLog(MetalColor metalColor) {
+        Assertions.assertThat(metalColor.getActualResultLog())
+                .hasSameElementsAs(expectedActualResultLog());
     }
 
     public List<String> expectedActualResultLog() {

@@ -60,9 +60,23 @@ public class MetalColor {
     }
 
     public List<String> getActualResultLog() {
+        int sumOfOddEvenNumbers = Integer.parseInt(getSummary().get(0)) + Integer.parseInt(getSummary().get(1));
         List<String> actualResult = new ArrayList<>();
-        actualResult.add(getColor());
-        actualResult.add(getMetals());
+        String elementsEarth = convertStringArrayToString(getElements(), ",");
+        String vegetables = convertStringArrayToString(getVegetables(), ",");
+        actualResult.add("Color: " + getColor());
+        actualResult.add("Metal: " + getMetals());
+        actualResult.add("Summary: " + sumOfOddEvenNumbers);
+        actualResult.add("Elements: " + elementsEarth);
+        actualResult.add("Vegetables: " + vegetables);
         return actualResult;
+    }
+
+    private static String convertStringArrayToString(List<String> strArr, String delimiter) {
+        StringBuilder sb = new StringBuilder();
+        for (String str : strArr) {
+            sb.append(str).append(delimiter).append(' ');
+        }
+        return sb.substring(0, sb.length() - 2);
     }
 }
