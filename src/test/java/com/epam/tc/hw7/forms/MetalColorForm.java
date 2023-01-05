@@ -8,8 +8,7 @@ import com.epam.jdi.light.elements.pageobjects.annotations.locators.JDropdown;
 import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
 import com.epam.tc.hw7.enteties.MetalColor;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class MetalColorForm extends Form<MetalColor> {
 
@@ -48,10 +47,5 @@ public class MetalColorForm extends Form<MetalColor> {
         saladList.select("Vegetables");
         metalColor.getVegetables().forEach(saladList::select);
         submit.click();
-    }
-
-    public List<String> expectedActualResultLog() {
-        List<String> expectedResult = new ArrayList<>();
-        return expectedResult;
     }
 }

@@ -62,6 +62,7 @@ public class MetalColor {
     public List<String> getActualResultLog() {
         List<String> actualResult = new ArrayList<>();
         actualResult.add(getColor());
+        actualResult.add(getMetals());
         return actualResult;
     }
 }

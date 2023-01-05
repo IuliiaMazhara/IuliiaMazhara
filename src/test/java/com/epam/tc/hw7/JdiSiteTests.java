@@ -34,6 +34,6 @@ public class JdiSiteTests {
     public void ex7Test(MetalColor metalColor) {
         JdiSite.openMetalsAndColorsPage();
         JdiSite.fillMetalsColorsForm(metalColor);
-        JdiSite.verifyResultLog(metalColor);
+        JdiSite.verifyResultLog();
     }
 }
