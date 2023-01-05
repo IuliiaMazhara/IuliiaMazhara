@@ -31,7 +31,7 @@ public class JdiSiteTests {
     }
 
     @Test(priority = 2, dataProvider = "DataProviderJson", dataProviderClass = DataProviderMetalColor.class)
-    public void ex7Test(MetalColor metalColor) {
+    public void metalColorTest(MetalColor metalColor) {
         JdiSite.openMetalsAndColorsPage();
         JdiSite.fillMetalsColorsForm(metalColor);
         JdiSite.verifyResultLog(metalColor);
