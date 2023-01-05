@@ -36,8 +36,8 @@ public class JdiSite {
         metalColorPage.fillMetalAndColorForm(metalColor);
     }
 
-    public static void assertResultLogs(MetalColor metalColor) {
-        metalColorPage.verifyResultRows(metalColor);
+    public static void verifyResultLog(MetalColor metalColor) {
+        metalColorPage.assertResultLog(metalColor);
     }
 }
 

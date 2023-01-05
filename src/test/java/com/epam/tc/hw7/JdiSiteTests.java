@@ -23,18 +23,17 @@ public class JdiSiteTests {
         WebDriverUtils.killAllSeleniumDrivers();
     }
 
-    @Test(dataProvider = "DataProviderJson", dataProviderClass = DataProviderMetalColor.class)
-    public void ex7Test(MetalColor metalColor) {
-        //logInTest();
-        JdiSite.openHomePage();
-        System.out.println("AAAAA");
-        JdiSite.openMetalsAndColorsPage();
-        JdiSite.fillMetalsColorsForm(metalColor);
-    }
-
+    @Test(priority = 1)
     public void logInTest() {
         JdiSite.openHomePage();
         JdiSite.login(ROMAN);
         JdiSite.jdiHomePage.userName.is().text(ROMAN.getFullName());
+    }
+
+    @Test(priority = 2, dataProvider = "DataProviderJson", dataProviderClass = DataProviderMetalColor.class)
+    public void ex7Test(MetalColor metalColor) {
+        JdiSite.openMetalsAndColorsPage();
+        JdiSite.fillMetalsColorsForm(metalColor);
+        JdiSite.verifyResultLog(metalColor);
     }
 }

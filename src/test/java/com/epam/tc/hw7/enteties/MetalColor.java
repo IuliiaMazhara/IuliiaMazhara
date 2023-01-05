@@ -1,6 +1,7 @@
 package com.epam.tc.hw7.enteties;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MetalColor {
@@ -58,4 +59,9 @@ public class MetalColor {
         this.summary = summary;
     }
 
+    public List<String> getActualResultLog() {
+        List<String> actualResult = new ArrayList<>();
+        actualResult.add(getColor());
+        return actualResult;
+    }
 }
