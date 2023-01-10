@@ -1,10 +1,11 @@
-package com.epam.tc.hw7.enteties;
+package com.epam.tc.hw7.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.jdiai.tools.DataClass;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MetalColor {
+public class MetalColor extends DataClass<MetalColor> {
 
     @JsonProperty("summary")
     private List<String> summary;
@@ -59,11 +60,11 @@ public class MetalColor {
         this.summary = summary;
     }
 
-    public List<String> getActualResultLog() {
+    public List<String> getExpectedResultLog() {
         int sumOfOddEvenNumbers = Integer.parseInt(getSummary().get(0)) + Integer.parseInt(getSummary().get(1));
         List<String> actualResult = new ArrayList<>();
-        String elementsEarth = convertStringArrayToString(getElements(), ",");
-        String vegetables = convertStringArrayToString(getVegetables(), ",");
+        String elementsEarth = String.join(", ", getElements());
+        String vegetables = String.join(", ", getVegetables());
         actualResult.add("Color: " + getColor());
         actualResult.add("Metal: " + getMetals());
         actualResult.add("Summary: " + sumOfOddEvenNumbers);

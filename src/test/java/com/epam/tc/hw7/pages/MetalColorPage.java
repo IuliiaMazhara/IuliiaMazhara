@@ -1,9 +1,9 @@
-package com.epam.tc.hw7;
+package com.epam.tc.hw7.pages;
 
 import com.epam.jdi.light.elements.complex.WebList;
 import com.epam.jdi.light.elements.composite.WebPage;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
-import com.epam.tc.hw7.enteties.MetalColor;
+import com.epam.tc.hw7.entities.MetalColor;
 import com.epam.tc.hw7.forms.MetalColorForm;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +22,11 @@ public class MetalColorPage extends WebPage {
     }
 
     public void assertResultLog(MetalColor metalColor) {
-        Assertions.assertThat(metalColor.getActualResultLog())
-                .hasSameElementsAs(expectedActualResultLog());
+        Assertions.assertThat(metalColor.getExpectedResultLog())
+                .hasSameElementsAs(actualResultLog());
     }
 
-    public List<String> expectedActualResultLog() {
+    public List<String> actualResultLog() {
         List<String> expectedResult = new ArrayList<>();
         log.forEach(els -> {
             expectedResult.add(els.getText());

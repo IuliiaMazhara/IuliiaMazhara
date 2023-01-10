@@ -1,12 +1,14 @@
-package com.epam.tc.hw7.enteties;
+package com.epam.tc.hw7.entities;
 
 
-public class User {
+import com.jdiai.tools.DataClass;
+
+public class User extends DataClass<User> {
     public static final  User ROMAN = new User("Roman", "Jdi1234", "ROMAN IOVLEV");
 
-    private String userName;
-    private String password;
-    private String fullName;
+    private final String userName;
+    private final String password;
+    private final String fullName;
 
     public User(String login, String password, String fullName) {
         this.userName = login;

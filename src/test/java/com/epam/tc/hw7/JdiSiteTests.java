@@ -1,11 +1,12 @@
 package com.epam.tc.hw7;
 
 
-import static com.epam.tc.hw7.enteties.User.ROMAN;
+import static com.epam.tc.hw7.entities.User.ROMAN;
 
 import com.epam.jdi.light.driver.WebDriverUtils;
 import com.epam.jdi.light.elements.init.PageFactory;
-import com.epam.tc.hw7.enteties.MetalColor;
+import com.epam.tc.hw7.entities.MetalColor;
+import com.epam.tc.hw7.pages.JdiSite;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
